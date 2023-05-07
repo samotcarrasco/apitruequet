@@ -1,0 +1,4 @@
+rootProject.name = 'apitruequet'
+
+//sñadido para libreria externa (github)
+includeFlat 'proyectoLibsamotcarrasco' 
