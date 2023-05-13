@@ -44,8 +44,8 @@ public class DepartamentoListaAssembler  implements RepresentationModelAssembler
 	
 	
 	
-	public CollectionModel<DepartamentoListaModel> toCollection(List<Departamento> lista) {
-		CollectionModel<DepartamentoListaModel> collection = CollectionModel.of(
+	public CollectionModel<DepartamentoModel> toCollection(List<Departamento> lista) {
+		CollectionModel<DepartamentoModel> collection = CollectionModel.of(
 				lista.stream().map(this::toModel).collect(Collectors.toList())
 				);		
 		return collection;
