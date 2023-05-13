@@ -15,17 +15,29 @@ import es.mdef.apitruequet.entidades.Departamento;
 
 
 @Component
-public class DepartamentoListaAssembler  implements RepresentationModelAssembler<Departamento, DepartamentoListaModel>{
+public class DepartamentoListaAssembler  implements RepresentationModelAssembler<Departamento, DepartamentoModel>{
 
 	
 	@Override
-	public DepartamentoListaModel toModel(Departamento entity) {
-		DepartamentoListaModel model = new DepartamentoListaModel();
+	public DepartamentoModel toModel(Departamento entity) {
+		DepartamentoModel model = new DepartamentoModel();
 		model.setId(entity.getId());
 		model.setAbreviatura(entity.getAbreviatura());
+		model.setNombre(entity.getNombre());
+		model.setAcuartelamiento(entity.getAcuartelamiento());
 		model.setCredito(entity.getCredito());
 		model.setEmail(entity.getEmail());
+		model.setTelefono(entity.getTelefono());
+		model.setResponsableNombre(entity.getResponsableNombre());
+		model.setResponsableEmpleo(entity.getResponsableEmpleo());
+		model.setDireccion(entity.getDireccion());
+		model.setLongitud(entity.getLongitud());
+		model.setLatitud(entity.getLatitud());
+		
+				
 		model.add(linkTo(methodOn(DepartamentoController.class).one(entity.getId())).withSelfRel());
+		model.add(linkTo(methodOn(DepartamentoController.class).materialesOfertados(entity.getId())).withRel("materialesOfertados"));
+		model.add(linkTo(methodOn(DepartamentoController.class).materialesAdquiridos(entity.getId())).withRel("materialesAdquiridos"));
 
 		return model;
 	}
