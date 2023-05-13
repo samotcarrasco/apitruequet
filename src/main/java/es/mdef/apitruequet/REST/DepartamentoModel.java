@@ -23,6 +23,10 @@ public class DepartamentoModel extends RepresentationModel<CategoriaModel>{
 	private TipoEmpleo responsableEmpleo;
 	private String responsableNombre;
 	private String telefono;
+	private String direccion;
+	private String latitud;
+	private String longitud;
+	
 	
 	public Long getId() {
 		return id;
@@ -95,6 +99,30 @@ public class DepartamentoModel extends RepresentationModel<CategoriaModel>{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public String getLatitud() {
+		return latitud;
+	}
+
+	public String getLongitud() {
+		return longitud;
+	}
+
+	public void setDireccion(String direccion) {
+		this.direccion = direccion;
+	}
+
+	public void setLatitud(String latitud) {
+		this.latitud = latitud;
+	}
+
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
 	}
 
 	@Override

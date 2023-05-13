@@ -22,6 +22,10 @@ public class DepartamentoPostModel extends RepresentationModel<CategoriaModel>{
 	private TipoEmpleo responsableEmpleo;
 	private String responsableNombre;
 	private String telefono;
+	private String direccion;
+	private String latitud;
+	private String longitud;
+	
 	
 	public Long getId() {
 		return id;
@@ -57,6 +61,19 @@ public class DepartamentoPostModel extends RepresentationModel<CategoriaModel>{
 	}
 
 	
+	
+	public String getDireccion() {
+		return direccion;
+	}
+
+	public String getLatitud() {
+		return latitud;
+	}
+
+	public String getLongitud() {
+		return longitud;
+	}
+
 	@Override
 	public String toString() {
 		return "DPTO MODELO [id=" + getId() + ", nombre" + getNombre() + "]";

@@ -28,6 +28,9 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		model.setTelefono(entity.getTelefono());
 		model.setResponsableNombre(entity.getResponsableNombre());
 		model.setResponsableEmpleo(entity.getResponsableEmpleo());
+		model.setDireccion(entity.getDireccion());
+		model.setLongitud(entity.getLongitud());
+		model.setLatitud(entity.getLatitud());
 		
 				
 		model.add(linkTo(methodOn(DepartamentoController.class).one(entity.getId())).withSelfRel());
@@ -50,6 +53,9 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		departamento.setTelefono(model.getTelefono());
 		departamento.setResponsableNombre(model.getResponsableNombre());
 		departamento.setResponsableEmpleo(model.getResponsableEmpleo());
+		departamento.setDireccion(model.getDireccion());
+		departamento.setLongitud(model.getDireccion());
+		departamento.setLatitud(model.getLatitud());
 		
 		//las entidades ocn las que esta relacionada
 		return departamento;
