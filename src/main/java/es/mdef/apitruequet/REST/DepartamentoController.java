@@ -77,7 +77,7 @@ public class DepartamentoController {
 		
 		
 		@GetMapping
-		public CollectionModel<DepartamentoModel> all() {
+		public CollectionModel<DepartamentoListaModel> all() {
 			return listaAssembler.toCollection(repositorio.findAll());
 		}
 

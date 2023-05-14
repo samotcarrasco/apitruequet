@@ -15,12 +15,12 @@ import es.mdef.apitruequet.entidades.Departamento;
 
 
 @Component
-public class DepartamentoListaAssembler  implements RepresentationModelAssembler<Departamento, DepartamentoModel>{
+public class DepartamentoListaAssembler  implements RepresentationModelAssembler<Departamento, DepartamentoListaModel>{
 
 	
 	@Override
-	public DepartamentoModel toModel(Departamento entity) {
-		DepartamentoModel model = new DepartamentoModel();
+	public DepartamentoListaModel toModel(Departamento entity) {
+		DepartamentoListaModel model = new DepartamentoListaModel();
 		model.setId(entity.getId());
 		model.setAbreviatura(entity.getAbreviatura());
 		model.setNombre(entity.getNombre());
@@ -44,8 +44,8 @@ public class DepartamentoListaAssembler  implements RepresentationModelAssembler
 	
 	
 	
-	public CollectionModel<DepartamentoModel> toCollection(List<Departamento> lista) {
-		CollectionModel<DepartamentoModel> collection = CollectionModel.of(
+	public CollectionModel<DepartamentoListaModel> toCollection(List<Departamento> lista) {
+		CollectionModel<DepartamentoListaModel> collection = CollectionModel.of(
 				lista.stream().map(this::toModel).collect(Collectors.toList())
 				);		
 		return collection;
