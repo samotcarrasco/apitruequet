@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.mdef.apitruequet.GestionUsuariosApplication;
 import es.mdef.apitruequet.entidades.Departamento;
+import es.mdef.apitruequet.entidades.Departamento.TipoEmpleo;
 import es.mdef.apitruequet.repositorios.DepartamentoRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;
@@ -60,6 +61,12 @@ public class DepartamentoController {
 					.orElseThrow(() -> new RegisterNotFoundException(id, "departamento"));
 		    return matListaAssembler.toCollection(departamento.getMaterialesOfertados());
 		}
+		
+		@GetMapping("/empleos")
+		 public TipoEmpleo[] getTiposEmpleo() {
+	        return TipoEmpleo.values();
+	    }
+		
 		
 		@GetMapping("{id}/materialesAdquiridos")
 		public CollectionModel<MaterialListaModel> materialesAdquiridos(@PathVariable Long id) {
