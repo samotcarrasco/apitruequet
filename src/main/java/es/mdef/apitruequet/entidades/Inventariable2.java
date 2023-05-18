@@ -1,8 +1,13 @@
 package es.mdef.apitruequet.entidades;
 
 
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.persistence.DiscriminatorValue;
 
-public class Inventariable extends Material implements es.mde.acing.utils.esInventariable {
+@Entity
+@DiscriminatorValue("I")
+public class Inventariable2 extends Material {
 	
 	private String noc;
     private String numeroSerie;

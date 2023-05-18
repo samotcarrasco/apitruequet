@@ -4,7 +4,7 @@ package es.mdef.apitruequet.REST;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import es.mdef.apitruequet.entidades.Categoria.TipoGrupo;
+import es.mde.acing.utils.CategoriaL.TipoGrupo;
 
 
 @Relation(itemRelation="categoria")

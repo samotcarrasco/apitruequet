@@ -1,16 +1,11 @@
 package es.mdef.apitruequet.REST;
 
-import java.util.List;
 
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import es.mdef.apitruequet.entidades.Material;
-import es.mdef.apitruequet.entidades.Categoria.TipoGrupo;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+
+import es.mde.acing.utils.CategoriaL.TipoGrupo;
 
 @Relation(collectionRelation="categorias")
 public class CategoriaListaModel extends RepresentationModel<CategoriaListaModel>{

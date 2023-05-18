@@ -1,26 +1,15 @@
 package es.mdef.apitruequet.REST;
 
 import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
 import es.mdef.apitruequet.entidades.Categoria;
 import es.mdef.apitruequet.entidades.Departamento;
-import es.mdef.apitruequet.entidades.Material;
-import es.mdef.apitruequet.entidades.Categoria.TipoGrupo;
-import es.mdef.apitruequet.entidades.Material.EstadoMaterial;
-import es.mdef.apitruequet.entidades.Material.TipoMaterial;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import es.mde.acing.utils.MaterialL.EstadoMaterial;
+import es.mde.acing.utils.MaterialL.TipoMaterial;
+
 
 @Relation(itemRelation = "material")
 public class MaterialPostModel extends RepresentationModel<MaterialPostModel>{
@@ -49,6 +38,7 @@ public class MaterialPostModel extends RepresentationModel<MaterialPostModel>{
 	private String noc;
 	private String numeroSerie;
 	private int bonificacion;
+	private String imgReducida;
      	 
     
 	public Long getId() {
@@ -121,6 +111,12 @@ public class MaterialPostModel extends RepresentationModel<MaterialPostModel>{
 
 	public int getBonificacion() {
 		return bonificacion;
+	}
+
+	
+	
+	public String getImgReducida() {
+		return imgReducida;
 	}
 
 	@Override

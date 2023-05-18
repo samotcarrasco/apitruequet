@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.mdef.apitruequet.GestionUsuariosApplication;
 import es.mdef.apitruequet.entidades.Categoria;
-import es.mdef.apitruequet.entidades.Categoria.TipoGrupo;
+import es.mde.acing.utils.CategoriaL.TipoGrupo;
 import es.mdef.apitruequet.repositorios.CategoriaRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;

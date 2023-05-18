@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.mdef.apitruequet.entidades.Categoria;
-import es.mdef.apitruequet.entidades.Categoria.TipoGrupo;
+import es.mde.acing.utils.CategoriaL.TipoGrupo;
 
 public interface CategoriaRepositorio extends JpaRepository<Categoria, Long> {
 

@@ -1,26 +1,9 @@
 package es.mdef.apitruequet.REST;
 
-import java.time.LocalDate;
-import java.util.List;
-
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import es.mdef.apitruequet.entidades.Categoria;
-import es.mdef.apitruequet.entidades.Departamento;
-import es.mdef.apitruequet.entidades.Material;
-import es.mdef.apitruequet.entidades.Categoria.TipoGrupo;
-import es.mdef.apitruequet.entidades.Material.EstadoMaterial;
-import es.mdef.apitruequet.entidades.Material.TipoMaterial;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import es.mde.acing.utils.MaterialL.EstadoMaterial;
 
 @Relation(collectionRelation="materiales")
 public class MaterialListaModel extends RepresentationModel<MaterialListaModel>{
@@ -39,6 +22,7 @@ public class MaterialListaModel extends RepresentationModel<MaterialListaModel>{
 	private int milis;
 	private int cantidad;
 	private String imagen;
+	private String imgReducida;
      	 
     	 
 
@@ -116,6 +100,12 @@ public class MaterialListaModel extends RepresentationModel<MaterialListaModel>{
 	}
 	
 
+	public String getImgReducida() {
+		return imgReducida;
+	}
+	public void setImgReducida(String imgReducida) {
+		this.imgReducida = imgReducida;
+	}
 	@Override
 	public String toString() {
 		return "MATERIAL [Nombre=" + getNombre() +"]";

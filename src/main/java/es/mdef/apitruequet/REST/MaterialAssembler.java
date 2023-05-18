@@ -11,7 +11,7 @@ import es.mdef.apitruequet.entidades.Categoria;
 import es.mdef.apitruequet.entidades.Inventariable;
 import es.mdef.apitruequet.entidades.Material;
 import es.mdef.apitruequet.entidades.NoInventariable;
-import es.mdef.apitruequet.entidades.Material.TipoMaterial;
+import es.mde.acing.utils.MaterialL.TipoMaterial;
 
 
 

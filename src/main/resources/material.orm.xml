@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd" 
+	version="1.0"> 
+    <entity class="es.mdef.apitruequet.entidades.Material" access="FIELD">
+		<table name="MATERIALES"/>
+		<inheritance strategy="SINGLE_TABLE"/>
+		<discriminator-value>null</discriminator-value>
+		<discriminator-column name="tipo_material" discriminator-type="CHAR"/>
+        <attributes> 
+            <id name="id"> 
+                <generated-value strategy="IDENTITY"/> 
+            </id> 
+            <basic name="imgReducida" optional="false"/>
+              <many-to-one name="dptoOferta" fetch="LAZY"  optional="false">
+                <join-column name="dptoO_id"/>
+            </many-to-one>
+            
+            <many-to-one name="dptoAdquisicion" fetch="LAZY">
+                <join-column name="dptoA_id"/>
+            </many-to-one>
+            
+            <many-to-one name="categoria" fetch="LAZY"  optional="false">
+                <join-column name="categoria_id" />
+            </many-to-one>
+        </attributes>
+     </entity>
+</entity-mappings>

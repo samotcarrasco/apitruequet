@@ -10,7 +10,6 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import es.mdef.apitruequet.entidades.Categoria;
 import es.mdef.apitruequet.entidades.Material;
 
 
@@ -27,7 +26,7 @@ public class MaterialListaAssembler  implements RepresentationModelAssembler<Mat
 		model.setDescripcion(entity.getDescripcion());
 		model.setCantidad(entity.getCantidad());
 		model.setMilis(entity.getMilis());
-		model.setImagen(entity.getImagen());
+		model.setImgReducida(entity.getImgReducida());
 		
 		//por compodidad para el front, estos tres los devolvemoscomo String
 		model.setCategoriaN(entity.getCategoria().getCategoria());
