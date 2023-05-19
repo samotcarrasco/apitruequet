@@ -13,7 +13,7 @@ public class Material extends es.mde.acing.utils.MaterialL{
 		this.id = id;
 	}
 	
-	
+
 	public String getImgReducida() {
 		return imgReducida;
 	}

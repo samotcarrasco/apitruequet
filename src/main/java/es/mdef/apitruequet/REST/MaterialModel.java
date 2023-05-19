@@ -34,9 +34,17 @@ public class MaterialModel extends RepresentationModel<MaterialModel>{
 	private String noc;
 	private String numeroSerie;
 	private int bonificacion;
+	private int numMateriales;
+
 	    	 
     	 
 
+	public int getNumMateriales() {
+		return numMateriales;
+	}
+	public void setNumMateriales(int numMateriales) {
+		this.numMateriales = numMateriales;
+	}
 	public Long getId() {
 		return id;
 	}

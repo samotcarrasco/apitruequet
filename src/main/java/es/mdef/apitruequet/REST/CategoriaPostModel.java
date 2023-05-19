@@ -4,7 +4,6 @@ import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
 import es.mde.acing.utils.CategoriaL.TipoGrupo;
-import jakarta.validation.constraints.NotBlank;
 
 
 @Relation(itemRelation="categoria")

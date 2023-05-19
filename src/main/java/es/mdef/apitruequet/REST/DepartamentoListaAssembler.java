@@ -10,7 +10,6 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import es.mdef.apitruequet.entidades.Categoria;
 import es.mdef.apitruequet.entidades.Departamento;
 
 

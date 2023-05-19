@@ -1,12 +1,7 @@
 package es.mdef.apitruequet.REST;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
-
 import org.slf4j.Logger;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,14 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.mdef.apitruequet.GestionUsuariosApplication;
-import es.mdef.apitruequet.entidades.Inventariable;
 import es.mdef.apitruequet.entidades.Material;
-import es.mdef.apitruequet.entidades.NoInventariable;
-import es.mdef.apitruequet.entidades.Material.TipoMaterial;
 import es.mdef.apitruequet.repositorios.MaterialRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;

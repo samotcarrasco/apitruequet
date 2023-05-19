@@ -17,6 +17,7 @@
             </basic>
 
             <basic name="grupo" >
+				 <column name="grupo"/>
             </basic>
 
             <basic name="minMilis">
@@ -26,8 +27,8 @@
             <basic name="maxMilis">
                 <column name="maxMilis"/>
             </basic>
-	        <one-to-many name="materiales" mapped-by="categoria"/>
-
+      		<one-to-many name="materiales" mapped-by="categoria" target-entity="es.mdef.apitruequet.entidades.Material"/>
+     
         </attributes>
     </mapped-superclass>
 

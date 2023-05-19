@@ -7,20 +7,41 @@
      <mapped-superclass class="es.mde.acing.utils.DepartamentoL" access="FIELD">
 
         <attributes>
-
-	  <basic name="nombre"/>
-            <basic name="abreviatura"/>
-            <basic name="acuartelamiento"/>
-            <basic name="email"/>
-            <basic name="credito"/>
-            <basic name="responsableEmpleo"/>
-            <basic name="responsableNombre"/>
-            <basic name="telefono"/>
-            <basic name="direccion"/>
-            <basic name="latitud"/>
-            <basic name="longitud"/>
-
-	        <one-to-many name="materiales" mapped-by="categoria"/>
+		<basic name="nombre" optional="false">
+		    <column name="nombre" unique="true"/>
+		</basic>
+		<basic name="abreviatura" optional="false">
+		    <column name="abreviatura" unique="true"/>
+		</basic>
+		<basic name="acuartelamiento" optional="false">
+		    <column name="acuartelamiento"/>
+		</basic>
+		<basic name="email" optional="false">
+		    <column name="email"/>
+		</basic>
+		<basic name="credito" optional="false">
+		    <column name="credito"/>
+		</basic>
+		<basic name="responsableEmpleo" optional="false">
+		    <column name="responsableEmpleo"/>
+		</basic>
+		<basic name="responsableNombre" optional="false">
+		    <column name="responsableNombre"/>
+		</basic>
+		<basic name="telefono" optional="false">
+		    <column name="telefono"/>
+		</basic>
+		<basic name="direccion" optional="false">
+		    <column name="direccion"/>
+		</basic>
+		<basic name="latitud" optional="false">
+		    <column name="latitud"/>
+		</basic>
+		<basic name="longitud" optional="false">
+		    <column name="longitud"/>
+		</basic>
+  			<one-to-many name="materialesOfertados" mapped-by="materialesOfertados" target-entity="es.mdef.apitruequet.entidades.Material"/>
+            <one-to-many name="materialesAdquiridos" mapped-by="materialesAdquiridos" target-entity="es.mdef.apitruequet.entidades.Material"/>
 
         </attributes>
     </mapped-superclass>

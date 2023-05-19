@@ -2,12 +2,10 @@ package es.mdef.apitruequet.entidades;
 
 
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.NotBlank;
-import es.mdef.apitruequet.entidades.Material.TipoMaterial;
 import jakarta.persistence.DiscriminatorValue;
 
 @Entity
-@DiscriminatorValue("N")
+@DiscriminatorValue("P")
 public class NoInventariable2 extends Material {
 	
 	private int bonificacion;

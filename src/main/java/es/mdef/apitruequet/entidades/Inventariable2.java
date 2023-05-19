@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.persistence.DiscriminatorValue;
 
 @Entity
-@DiscriminatorValue("I")
+@DiscriminatorValue("T")
 public class Inventariable2 extends Material {
 	
 	private String noc;

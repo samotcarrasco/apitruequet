@@ -6,29 +6,52 @@
 	
      <mapped-superclass class="es.mde.acing.utils.MaterialL" access="FIELD">
  		<attributes>
-            <basic name="nombre">
-                <column name="nombre" nullable="false"/>
-            </basic>
+        
+		<basic name="descripcion">
+		    <column name="descripcion"/>
+		</basic>
+		
+		<basic name="dimensiones">
+		    <column name="dimensiones"/>
+		</basic>
+		
+		<basic name="peso">
+		    <column name="peso"/>
+		</basic>
+		
+		<basic name="estado">
+		    <column name="estado"/>
+		</basic>
+		
+		<basic name="fechaAdquisicion">
+		    <column name="fechaAdquisicion"/>
+		</basic>
+		
+		<basic name="fechaOferta">
+		    <column name="fechaOferta"/>
+		</basic>
+		
+		<basic name="imagen">
+		    <column name="imagen"/>
+		</basic>
+		
+		<basic name="milis">
+		    <column name="milis"/>
+		</basic>
+		
+		<basic name="cantidad">
+		    <column name="cantidad"/>
+		</basic>
             
-            <basic name="descripcion" />
-            <basic name="dimensiones" />
-            <basic name="peso" />
-            <basic name="estado"/>
-            <basic name="fechaAdquisicion"/>
-            <basic name="fechaOferta"  />
-            <basic name="imagen" />
-            <basic name="milis" />
-            <basic name="cantidad" />
-            
-            <many-to-one name="dptoOferta" fetch="LAZY"  optional="false">
+            <many-to-one name="dptoOferta" fetch="LAZY"  optional="false" >
                 <join-column name="dptoO_id"/>
             </many-to-one>
             
-            <many-to-one name="dptoAdquisicion" fetch="LAZY">
+            <many-to-one name="dptoAdquisicion" fetch="LAZY" >
                 <join-column name="dptoA_id"/>
             </many-to-one>
             
-            <many-to-one name="categoria" fetch="LAZY"  optional="false">
+            <many-to-one name="categoria" fetch="LAZY"  optional="false" >
                 <join-column name="categoria_id" />
             </many-to-one>
             

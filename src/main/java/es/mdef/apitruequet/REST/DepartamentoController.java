@@ -21,10 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.mdef.apitruequet.GestionUsuariosApplication;
 import es.mdef.apitruequet.entidades.Departamento;
-import es.mdef.apitruequet.entidades.Departamento.TipoEmpleo;
 import es.mdef.apitruequet.repositorios.DepartamentoRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;
+
+import es.mde.acing.utils.DepartamentoL.TipoEmpleo;
+
 
 @CrossOrigin(origins = "*")
 @RestController

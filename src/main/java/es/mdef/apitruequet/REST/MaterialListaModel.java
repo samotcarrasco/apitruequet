@@ -23,8 +23,17 @@ public class MaterialListaModel extends RepresentationModel<MaterialListaModel>{
 	private int cantidad;
 	private String imagen;
 	private String imgReducida;
+	private int numMateriales;
+
      	 
-    	 
+
+
+	public int getNumMateriales() {
+		return numMateriales;
+	}
+	public void setNumMateriales(int numMateriales) {
+		this.numMateriales = numMateriales;
+	}
 
 	public Long getId() {
 		return id;

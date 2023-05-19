@@ -40,6 +40,12 @@ public class MaterialAssembler implements RepresentationModelAssembler<Material,
 		String nombreUnidadOferta = entity.getDptoAdquisicion() != null ? entity.getDptoAdquisicion().getAbreviatura() : "-";
 		model.setDptoAdquisicionN(nombreUnidadOferta);
 		
+		//devolvemos el numero de materiales que tiene la categoria
+		//int numMateriales = entity.getMaterialesOfertados() != null )? entity.getMaterialesOfertados().size() : 0;
+
+		//model.setNumMateriales(numMateriales);
+				
+		
 		
 		if (entity.getTipoMaterial() == TipoMaterial.Inventariable) {
 			model.setNoc(((Inventariable) entity).getNoc());

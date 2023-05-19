@@ -13,17 +13,7 @@
                 <generated-value strategy="IDENTITY"/> 
             </id> 
             <basic name="imgReducida" optional="false"/>
-              <many-to-one name="dptoOferta" fetch="LAZY"  optional="false">
-                <join-column name="dptoO_id"/>
-            </many-to-one>
-            
-            <many-to-one name="dptoAdquisicion" fetch="LAZY">
-                <join-column name="dptoA_id"/>
-            </many-to-one>
-            
-            <many-to-one name="categoria" fetch="LAZY"  optional="false">
-                <join-column name="categoria_id" />
-            </many-to-one>
+           
         </attributes>
      </entity>
 </entity-mappings>
