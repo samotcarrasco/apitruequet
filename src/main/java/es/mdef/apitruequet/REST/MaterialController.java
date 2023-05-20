@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.mde.acing.utils.Inventariable;
+import es.mde.acing.utils.MaterialImpl.TipoMaterial;
+import es.mde.acing.utils.NoInventariable;
 import es.mdef.apitruequet.GestionUsuariosApplication;
-import es.mdef.apitruequet.entidades.Material;
+import es.mdef.apitruequet.entidades.MaterialConId;
 import es.mdef.apitruequet.repositorios.MaterialRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;
@@ -39,7 +42,7 @@ public class MaterialController {
 	
 		@GetMapping("{id}")
 			public MaterialModel one(@PathVariable Long id) {
-			Material material = repositorio.findById(id)
+			MaterialConId material = repositorio.findById(id)
 				.orElseThrow(() -> new RegisterNotFoundException(id, "material"));
 			log.info("Recuperada " + material);
 			return assembler.toModel(material);
@@ -53,7 +56,7 @@ public class MaterialController {
 
 		@PostMapping
 		public MaterialModel add(@Valid @RequestBody MaterialPostModel model) {
-			Material material = repositorio.save(assembler.toEntity(model));
+			MaterialConId material = repositorio.save(assembler.toEntity(model));
 			log.info("Añadido " + material);
 			return assembler.toModel(material);
 		}
@@ -61,18 +64,18 @@ public class MaterialController {
 		
 		@PutMapping("{id}")
 		public MaterialModel edit(@Valid @PathVariable Long id, @RequestBody MaterialPostModel model) {
-		Material material = repositorio.findById(id).map(mat -> {
+		MaterialConId material = repositorio.findById(id).map(mat -> {
 			
 				  //solamente actualizamos los datos necesarios de cada rol cuando corresponda
-//		        if (model.getTipoMaterial() == TipoMaterial.Inventariable) {
-//		          	Inventariable inv = new Inventariable();
-//		        	repositorio.actualizarInventariable(model.getNumeroSerie(), model.getNoc(), id);
-//			        mat = inv;
-//		        }else if (model.getTipoMaterial() == TipoMaterial.noInventariable) {
-//		           	NoInventariable noInv = new NoInventariable();
-//		        	repositorio.actualizarNoInventariable(model.getBonificacion(), id);
-//			        mat = noInv;
-//		        }
+		        if (model.getTipoMaterial() == TipoMaterial.Inventariable) {
+		          	Inventariable inv = new Inventariable();
+		        	repositorio.actualizarInventariable(model.getNumeroSerie(), model.getNoc(), id);
+			        //mat = inv;
+		        }else if (model.getTipoMaterial() == TipoMaterial.noInventariable) {
+		           	NoInventariable noInv = new NoInventariable();
+		        	repositorio.actualizarNoInventariable(model.getBonificacion(), id);
+			        //mat = noInv;
+		        }
 		        
 		    	mat.setNombre(model.getNombre());
 				mat.setDescripcion(model.getDescripcion());
@@ -100,9 +103,9 @@ public class MaterialController {
 		@DeleteMapping("{id}")
 		public void delete(@PathVariable Long id) {
 		    log.info("Borrado Material " + id);
-		    Material material = repositorio.findById(id).map(fam -> {
+		    MaterialConId material = repositorio.findById(id).map(mat -> {
 					repositorio.deleteById(id);	
-					return fam;
+					return mat;
 				})
 				.orElseThrow(() -> new RegisterNotFoundException(id, "material"));
 		}

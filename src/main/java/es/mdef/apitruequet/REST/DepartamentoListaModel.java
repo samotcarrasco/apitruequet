@@ -5,8 +5,8 @@ package es.mdef.apitruequet.REST;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import es.mde.acing.utils.DepartamentoL.TipoAcuartelamiento;
-import es.mde.acing.utils.DepartamentoL.TipoEmpleo;
+import es.mde.acing.utils.DepartamentoImpl.TipoAcuartelamiento;
+import es.mde.acing.utils.DepartamentoImpl.TipoEmpleo;
 
 
 
@@ -27,6 +27,7 @@ public class DepartamentoListaModel extends RepresentationModel<CategoriaModel>{
 	private String direccion;
 	private String latitud;
 	private String longitud;
+	private int numMateriales;
 	
 	
 	public Long getId() {
@@ -59,6 +60,14 @@ public class DepartamentoListaModel extends RepresentationModel<CategoriaModel>{
 
 	public String getTelefono() {
 		return telefono;
+	}
+	
+	public int getNumMateriales() {
+		return numMateriales;
+	}
+	
+	public void setNumMateriales(int numMateriales) {
+		this.numMateriales = numMateriales;
 	}
 
 	public void setId(Long id) {

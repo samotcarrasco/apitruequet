@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd" 
+	version="1.0"> 
+	
+     <mapped-superclass class="es.mde.acing.utils.CategoriaImpl" access="FIELD">
+     						   
+
+        <attributes>
+
+            <basic name="categoria" />
+            <basic name="descripcion"/>
+            <basic name="grupo" />
+            <basic name="minMilis" />
+            <basic name="maxMilis" />
+      		
+      		<one-to-many name="materiales" mapped-by="categoria" target-entity="es.mdef.apitruequet.entidades.MaterialConId"/>
+      	 	     
+        </attributes>
+    </mapped-superclass>
+
+</entity-mappings>

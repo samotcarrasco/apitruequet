@@ -10,15 +10,15 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import es.mdef.apitruequet.entidades.Departamento;
+import es.mdef.apitruequet.entidades.DepartamentoConId;
 
 
 @Component
-public class DepartamentoListaAssembler  implements RepresentationModelAssembler<Departamento, DepartamentoListaModel>{
+public class DepartamentoListaAssembler  implements RepresentationModelAssembler<DepartamentoConId, DepartamentoListaModel>{
 
 	
 	@Override
-	public DepartamentoListaModel toModel(Departamento entity) {
+	public DepartamentoListaModel toModel(DepartamentoConId entity) {
 		DepartamentoListaModel model = new DepartamentoListaModel();
 		model.setId(entity.getId());
 		model.setAbreviatura(entity.getAbreviatura());
@@ -36,14 +36,14 @@ public class DepartamentoListaAssembler  implements RepresentationModelAssembler
 				
 		model.add(linkTo(methodOn(DepartamentoController.class).one(entity.getId())).withSelfRel());
 		model.add(linkTo(methodOn(DepartamentoController.class).materialesOfertados(entity.getId())).withRel("materialesOfertados"));
-		model.add(linkTo(methodOn(DepartamentoController.class).materialesAdquiridos(entity.getId())).withRel("materialesAdquiridos"));
+     	model.add(linkTo(methodOn(DepartamentoController.class).materialesAdquiridos(entity.getId())).withRel("materialesAdquiridos"));
 
 		return model;
 	}
 	
 	
 	
-	public CollectionModel<DepartamentoListaModel> toCollection(List<Departamento> lista) {
+	public CollectionModel<DepartamentoListaModel> toCollection(List<DepartamentoConId> lista) {
 		CollectionModel<DepartamentoListaModel> collection = CollectionModel.of(
 				lista.stream().map(this::toModel).collect(Collectors.toList())
 				);		

@@ -7,23 +7,25 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import es.mdef.apitruequet.entidades.Categoria;
+import es.mdef.apitruequet.entidades.CategoriaConId;
+import es.mdef.apitruequet.entidades.DepartamentoConId;
 import es.mdef.apitruequet.entidades.Inventariable;
-import es.mdef.apitruequet.entidades.Material;
+import es.mdef.apitruequet.entidades.MaterialConId;
 import es.mdef.apitruequet.entidades.NoInventariable;
-import es.mde.acing.utils.MaterialL.TipoMaterial;
+import es.mde.acing.utils.Material;
+import es.mde.acing.utils.MaterialImpl.TipoMaterial;
 
 
 
 @Component
-public class MaterialAssembler implements RepresentationModelAssembler<Material, MaterialModel>{
+public class MaterialAssembler implements RepresentationModelAssembler<MaterialConId, MaterialModel>{
 
 	
 	@Override
-	public MaterialModel toModel(Material entity) {
+	public MaterialModel toModel(MaterialConId entity) {
 		MaterialModel model = new MaterialModel();
 		
-		model.setId(entity.getId());
+		model.setId( entity.getId());
 		model.setEstado(entity.getEstado());
 		model.setNombre(entity.getNombre());
 		model.setDescripcion(entity.getDescripcion());
@@ -40,13 +42,7 @@ public class MaterialAssembler implements RepresentationModelAssembler<Material,
 		String nombreUnidadOferta = entity.getDptoAdquisicion() != null ? entity.getDptoAdquisicion().getAbreviatura() : "-";
 		model.setDptoAdquisicionN(nombreUnidadOferta);
 		
-		//devolvemos el numero de materiales que tiene la categoria
-		//int numMateriales = entity.getMaterialesOfertados() != null )? entity.getMaterialesOfertados().size() : 0;
-
-		//model.setNumMateriales(numMateriales);
 				
-		
-		
 		if (entity.getTipoMaterial() == TipoMaterial.Inventariable) {
 			model.setNoc(((Inventariable) entity).getNoc());
 			model.setNumeroSerie(((Inventariable) entity).getNumeroSerie());
@@ -59,10 +55,10 @@ public class MaterialAssembler implements RepresentationModelAssembler<Material,
 			model.setNumeroSerie(null);
 		}
 	
-		model.add(linkTo(methodOn(CategoriaController.class).one(entity.getCategoria().getId())).withRel("categoria"));
-		model.add(linkTo(methodOn(DepartamentoController.class).one(entity.getDeptoOferta().getId())).withRel("dptoOferta"));
+		model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity.getCategoria()).getId())).withRel("categoria"));
+		model.add(linkTo(methodOn(DepartamentoController.class).one(((DepartamentoConId) entity.getDeptoOferta()).getId())).withRel("dptoOferta"));
 		if (entity.getDptoAdquisicion() != null) {
-			model.add(linkTo(methodOn(DepartamentoController.class).one(entity.getDptoAdquisicion().getId())).withRel("dptoAdquisicion"));
+			model.add(linkTo(methodOn(DepartamentoController.class).one(((DepartamentoConId) entity.getDptoAdquisicion()).getId())).withRel("dptoAdquisicion"));
 		}
 		
 		return model;
@@ -71,8 +67,8 @@ public class MaterialAssembler implements RepresentationModelAssembler<Material,
 	
 	
 	
-	public Material toEntity(MaterialPostModel model) {
-		Material material = new Material();
+	public MaterialConId toEntity(MaterialPostModel model) {
+		MaterialConId material = new MaterialConId();
 		
 		
 		switch (model.getTipoMaterial()) {
@@ -100,6 +96,7 @@ public class MaterialAssembler implements RepresentationModelAssembler<Material,
 		material.setMilis(model.getMilis());
 		material.setEstado(model.getEstado());
 		material.setImagen(model.getImagen());
+		material.setImgReducida(model.getImgReducida());
 		
 		//las entidades con las que esta relacionada
 		material.setDeptoOferta(model.getDptoOferta());

@@ -20,12 +20,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.mdef.apitruequet.GestionUsuariosApplication;
-import es.mdef.apitruequet.entidades.Departamento;
+import es.mdef.apitruequet.entidades.DepartamentoConId;
 import es.mdef.apitruequet.repositorios.DepartamentoRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;
 
-import es.mde.acing.utils.DepartamentoL.TipoEmpleo;
+import es.mde.acing.utils.DepartamentoImpl.TipoEmpleo;
 
 
 @CrossOrigin(origins = "*")
@@ -51,7 +51,7 @@ public class DepartamentoController {
 	
 		@GetMapping("{id}")
 			public DepartamentoModel one(@PathVariable Long id) {
-			Departamento departamento = repositorio.findById(id)
+			DepartamentoConId departamento = repositorio.findById(id)
 				.orElseThrow(() -> new RegisterNotFoundException(id, "departamento"));
 			log.info("Recuperada " + departamento);
 			return assembler.toModel(departamento);
@@ -59,7 +59,7 @@ public class DepartamentoController {
 		
 		@GetMapping("{id}/materialesOfertados")
 		public CollectionModel<MaterialListaModel> materialesOfertados(@PathVariable Long id) {
-			Departamento departamento = repositorio.findById(id)
+			DepartamentoConId departamento = repositorio.findById(id)
 					.orElseThrow(() -> new RegisterNotFoundException(id, "departamento"));
 		    return matListaAssembler.toCollection(departamento.getMaterialesOfertados());
 		}
@@ -72,14 +72,14 @@ public class DepartamentoController {
 		
 		@GetMapping("{id}/materialesAdquiridos")
 		public CollectionModel<MaterialListaModel> materialesAdquiridos(@PathVariable Long id) {
-			Departamento departamento = repositorio.findById(id)
+			DepartamentoConId departamento = repositorio.findById(id)
 					.orElseThrow(() -> new RegisterNotFoundException(id, "departamento"));
 		    return matListaAssembler.toCollection(departamento.getMaterialesAdquiridos());
 		}
 		
 		@GetMapping("/siglas/{abreviatura}")
 		public DepartamentoModel departamentoPorSiglas(@PathVariable String abreviatura) {
-		    Departamento departamento = repositorio.findByAbreviatura(abreviatura)
+		    DepartamentoConId departamento = repositorio.findByAbreviatura(abreviatura)
 		    		.orElseThrow(() -> new RegisterNotFoundException(abreviatura, "departamento"));
 		    return assembler.toModel(departamento);
 		}
@@ -92,7 +92,7 @@ public class DepartamentoController {
 
 		@PostMapping
 		public DepartamentoModel add(@Valid @RequestBody DepartamentoPostModel model) {
-			Departamento departamento = repositorio.save(assembler.toEntity(model));
+			DepartamentoConId departamento = repositorio.save(assembler.toEntity(model));
 			log.info("Añadido " + departamento);
 			return assembler.toModel(departamento);
 		}
@@ -101,7 +101,7 @@ public class DepartamentoController {
 		@PutMapping("{id}")
 		public DepartamentoModel edit(@Valid @PathVariable Long id, @RequestBody DepartamentoPostModel model) {
 			  
-			Departamento departamento = repositorio.findById(id).map(dep -> {
+			DepartamentoConId departamento = repositorio.findById(id).map(dep -> {
 				
 				dep.setNombre(model.getNombre());
 				dep.setAbreviatura(model.getAbreviatura());
@@ -147,7 +147,7 @@ public class DepartamentoController {
 		@DeleteMapping("{id}")
 		public void delete(@PathVariable Long id) {
 		    log.info("Borrado Departamento " + id);
-		    Departamento departamento = repositorio.findById(id).map(fam -> {
+		    DepartamentoConId departamento = repositorio.findById(id).map(fam -> {
 					repositorio.deleteById(id);	
 					return fam;
 				})
@@ -157,7 +157,7 @@ public class DepartamentoController {
 		
 		@PutMapping("{id}/aumentarCredito")
 		public DepartamentoModel aumentarCredito(@PathVariable Long id, @RequestParam int cantidad) {
-		    Departamento departamento = repositorio.findById(id)
+		    DepartamentoConId departamento = repositorio.findById(id)
 		        .orElseThrow(() -> new RegisterNotFoundException(id, "Departamento"));
 
 		    departamento.aumentarCredito(cantidad);

@@ -3,25 +3,25 @@ package es.mdef.apitruequet.REST;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import es.mdef.apitruequet.entidades.Categoria;
+import es.mde.acing.utils.Categoria;
+import es.mdef.apitruequet.entidades.CategoriaConId;
 
 
 
 @Component
-public class CategoriaAssembler implements RepresentationModelAssembler<Categoria, CategoriaModel>{
+public class CategoriaAssembler implements RepresentationModelAssembler<CategoriaConId, CategoriaModel>{
 
 	
 	@Override
-	public CategoriaModel toModel(Categoria entity) {
+	public CategoriaModel toModel(CategoriaConId entity) {
 		CategoriaModel model = new CategoriaModel();
 		model.setCategoria(entity.getCategoria());
 		model.setDescripcion(entity.getDescripcion());
 		model.setGrupo(entity.getGrupo());
-		model.setId(entity.getId());
+		model.setId(((CategoriaConId) entity).getId());
 		model.setMinMilis(entity.getMinMilis());
 		model.setMaxMilis(entity.getMaxMilis());
 		
@@ -31,8 +31,8 @@ public class CategoriaAssembler implements RepresentationModelAssembler<Categori
 		model.setNumMateriales(numMateriales);
 				
 		model.add(
-				linkTo(methodOn(CategoriaController.class).one(entity.getId())).withSelfRel(),
-		     	linkTo(methodOn(CategoriaController.class).materialesDeCategoria(entity.getId())).withRel("materiales")
+				linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity).getId())).withSelfRel(),
+		     	linkTo(methodOn(CategoriaController.class).materialesDeCategoria(((CategoriaConId) entity).getId())).withRel("materiales")
 				);
 		return model;
 	}
@@ -40,8 +40,8 @@ public class CategoriaAssembler implements RepresentationModelAssembler<Categori
 	
 	
 	
-	public Categoria toEntity(CategoriaPostModel model) {
-		Categoria categoria = new Categoria();
+	public CategoriaConId toEntity(CategoriaPostModel model) {
+		CategoriaConId categoria = new CategoriaConId();
 		categoria.setCategoria(model.getCategoria());
 		categoria.setDescripcion(model.getDescripcion());
 		categoria.setGrupo(model.getGrupo());

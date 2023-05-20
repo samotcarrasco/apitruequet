@@ -4,15 +4,19 @@
                  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
                  version="2.2">
 
-    <entity class="es.mdef.apitruequet.entidades.Categoria" access="FIELD">
+    <entity class="es.mdef.apitruequet.entidades.CategoriaConId" access="FIELD">
         <table name="CATEGORIAS"/>
 
         <attributes>
             <id name="id">
                 <generated-value strategy="IDENTITY"/>
             </id>
+        <!--     <one-to-many name="materiales" mapped-by="categoria" target-entity="es.mdef.apitruequet.entidades.MaterialConId"/> -->
         </attributes>
 
+
+      		     
+      		     
     </entity>
     
 </entity-mappings>

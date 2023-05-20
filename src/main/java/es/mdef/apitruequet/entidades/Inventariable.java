@@ -1,8 +1,7 @@
 package es.mdef.apitruequet.entidades;
 
 
-
-public class Inventariable extends Material implements es.mde.acing.utils.esInventariable {
+public class Inventariable extends MaterialConId implements es.mde.acing.utils.esInventariable {
 	
 	private String noc;
     private String numeroSerie;

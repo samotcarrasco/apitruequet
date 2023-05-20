@@ -3,7 +3,7 @@ package es.mdef.apitruequet.REST;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import es.mde.acing.utils.MaterialL.EstadoMaterial;
+import es.mde.acing.utils.MaterialImpl.EstadoMaterial;
 
 @Relation(collectionRelation="materiales")
 public class MaterialListaModel extends RepresentationModel<MaterialListaModel>{
@@ -21,7 +21,7 @@ public class MaterialListaModel extends RepresentationModel<MaterialListaModel>{
 	private EstadoMaterial estado;
 	private int milis;
 	private int cantidad;
-	private String imagen;
+//	private String imagen;
 	private String imgReducida;
 	private int numMateriales;
 
@@ -101,12 +101,12 @@ public class MaterialListaModel extends RepresentationModel<MaterialListaModel>{
 	}
 
 
-	public String getImagen() {
-		return imagen;
-	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
+//	public String getImagen() {
+//		return imagen;
+//	}
+//	public void setImagen(String imagen) {
+//		this.imagen = imagen;
+//	}
 	
 
 	public String getImgReducida() {

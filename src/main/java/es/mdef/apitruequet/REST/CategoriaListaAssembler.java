@@ -10,14 +10,14 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import es.mdef.apitruequet.entidades.Categoria;
+import es.mdef.apitruequet.entidades.CategoriaConId;
 
 
 @Component
-public class CategoriaListaAssembler  implements RepresentationModelAssembler<Categoria, CategoriaListaModel>{
+public class CategoriaListaAssembler  implements RepresentationModelAssembler<CategoriaConId, CategoriaListaModel>{
 
 	@Override
-	public CategoriaListaModel toModel(Categoria entity) {
+	public CategoriaListaModel toModel(CategoriaConId entity) {
 		CategoriaListaModel model = new CategoriaListaModel();
 		model.setCategoria(entity.getCategoria());
 		model.setDescripcion(entity.getDescripcion());
@@ -36,7 +36,7 @@ public class CategoriaListaAssembler  implements RepresentationModelAssembler<Ca
 		return model;
 	}
 	
-	public CollectionModel<CategoriaListaModel> toCollection(List<Categoria> lista) {
+	public CollectionModel<CategoriaListaModel> toCollection(List<CategoriaConId> lista) {
 		CollectionModel<CategoriaListaModel> collection = CollectionModel.of(
 				lista.stream().map(this::toModel).collect(Collectors.toList())
 				);

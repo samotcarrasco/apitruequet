@@ -5,8 +5,8 @@ import java.time.LocalDate;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import es.mde.acing.utils.MaterialL.EstadoMaterial;
-import es.mde.acing.utils.MaterialL.TipoMaterial;
+import es.mde.acing.utils.MaterialImpl.EstadoMaterial;
+import es.mde.acing.utils.MaterialImpl.TipoMaterial;
 
 
 @Relation(itemRelation ="material")
@@ -15,7 +15,7 @@ public class MaterialModel extends RepresentationModel<MaterialModel>{
 	
 	private Long id;
 	private String nombre;
-	//estos 3 se rellenan en el Assembler
+	//estos 3 se rellenan en el Assemblers
 	private String dptoOfertaN;
 	private String dptoAdquisicionN;
 	private String categoriaN;

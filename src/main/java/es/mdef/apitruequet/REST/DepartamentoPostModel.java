@@ -5,8 +5,8 @@ package es.mdef.apitruequet.REST;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import es.mde.acing.utils.DepartamentoL.TipoAcuartelamiento;
-import es.mde.acing.utils.DepartamentoL.TipoEmpleo;
+import es.mde.acing.utils.DepartamentoImpl.TipoAcuartelamiento;
+import es.mde.acing.utils.DepartamentoImpl.TipoEmpleo;
 
 
 @Relation(itemRelation="departamento")

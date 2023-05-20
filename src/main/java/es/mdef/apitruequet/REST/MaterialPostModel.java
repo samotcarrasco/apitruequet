@@ -5,10 +5,10 @@ import java.time.LocalDate;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import es.mdef.apitruequet.entidades.Categoria;
-import es.mdef.apitruequet.entidades.Departamento;
-import es.mde.acing.utils.MaterialL.EstadoMaterial;
-import es.mde.acing.utils.MaterialL.TipoMaterial;
+import es.mdef.apitruequet.entidades.CategoriaConId;
+import es.mdef.apitruequet.entidades.DepartamentoConId;
+import es.mde.acing.utils.MaterialImpl.EstadoMaterial;
+import es.mde.acing.utils.MaterialImpl.TipoMaterial;
 
 
 @Relation(itemRelation = "material")
@@ -18,10 +18,10 @@ public class MaterialPostModel extends RepresentationModel<MaterialPostModel>{
 	private Long id;
 	private String nombre;
 
-	private Departamento dptoOferta;
+	private DepartamentoConId dptoOferta;
 	//dejamos el dpto adquisicion por compatibilidad con put
-	private Departamento dptoAdquisicion;
-	private Categoria categoria;
+	private DepartamentoConId dptoAdquisicion;
+	private CategoriaConId categoria;
 	
 	private String descripcion;
 	private LocalDate fechaAdquisicion;
@@ -49,15 +49,15 @@ public class MaterialPostModel extends RepresentationModel<MaterialPostModel>{
 		return nombre;
 	}
 
-	public Departamento getDptoOferta() {
+	public DepartamentoConId getDptoOferta() {
 		return dptoOferta;
 	}
 
-	public Departamento getDptoAdquisicion() {
+	public DepartamentoConId getDptoAdquisicion() {
 		return dptoAdquisicion;
 	}
 
-	public Categoria getCategoria() {
+	public CategoriaConId getCategoria() {
 		return categoria;
 	}
 

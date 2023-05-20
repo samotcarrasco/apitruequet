@@ -4,7 +4,7 @@
                  xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_2.xsd"
                  version="2.2">
 
-    <entity class="es.mdef.apitruequet.entidades.Departamento" access="FIELD">
+    <entity class="es.mdef.apitruequet.entidades.DepartamentoConId" access="FIELD">
         <table name="DEPARTAMENTOS"/>
 
         <attributes>
@@ -12,7 +12,6 @@
                 <generated-value strategy="IDENTITY"/>
             </id>
              
-   
         </attributes>
         
     </entity>

@@ -2,11 +2,13 @@ package es.mdef.apitruequet.entidades;
 
 
 
-public class NoInventariable extends Material  implements es.mde.acing.utils.esNoInvetnariable{
+public class NoInventariable extends MaterialConId  implements es.mde.acing.utils.esNoInvetnariable{
 	
 	private int bonificacion;
     
-
+	public TipoMaterial getTipoMaterial() {
+		return TipoMaterial.noInventariable;
+	}
 
 	public int getBonificacion() {
 		return bonificacion;
@@ -18,9 +20,7 @@ public class NoInventariable extends Material  implements es.mde.acing.utils.esN
 		this.bonificacion = bonificacion;
 	}
 
-	public TipoMaterial getTipoMaterial() {
-		return TipoMaterial.noInventariable;
-	}
+
 
 	@Override
 	public String toString() {

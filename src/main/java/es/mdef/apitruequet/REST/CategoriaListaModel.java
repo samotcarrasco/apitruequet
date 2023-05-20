@@ -5,7 +5,7 @@ import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
 
-import es.mde.acing.utils.CategoriaL.TipoGrupo;
+import es.mde.acing.utils.CategoriaImpl.TipoGrupo;
 
 @Relation(collectionRelation="categorias")
 public class CategoriaListaModel extends RepresentationModel<CategoriaListaModel>{

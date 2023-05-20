@@ -20,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import es.mdef.apitruequet.GestionUsuariosApplication;
-import es.mdef.apitruequet.entidades.Categoria;
-import es.mde.acing.utils.CategoriaL.TipoGrupo;
+import es.mdef.apitruequet.entidades.CategoriaConId;
+import es.mde.acing.utils.CategoriaImpl.TipoGrupo;
 import es.mdef.apitruequet.repositorios.CategoriaRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;
@@ -49,25 +49,26 @@ public class CategoriaController {
 	
 		@GetMapping("{id}")
 			public CategoriaModel one(@PathVariable Long id) {
-			Categoria categoria = repositorio.findById(id)
+			CategoriaConId categoria = repositorio.findById(id)
 				.orElseThrow(() -> new RegisterNotFoundException(id, "categoria"));
 			log.info("Recuperada " + categoria);
 			return assembler.toModel(categoria);
 		}
 		
+		//
 		@GetMapping("{id}/materiales")
 		public CollectionModel<MaterialListaModel> materialesDeCategoria(@PathVariable Long id) {
-			Categoria categoria = repositorio.findById(id)
+			CategoriaConId categoria = repositorio.findById(id)
 					.orElseThrow(() -> new RegisterNotFoundException(id, "categoria"));
 		    return matListaAssembler.toCollection(categoria.getMateriales());
 		}
 		
 		@GetMapping("/categoriasdegrupo")
 		public CollectionModel<CategoriaListaModel> categoriasDeGrupo(@RequestParam(value = "grupo") TipoGrupo grupo) {
-//			Categoria categoria = repositorio.findByGrupo(grupo)
+//			CategoriaConId categoria = repositorio.findByGrupo(grupo)
 //					.orElseThrow(() -> new RegisterNotFoundException(id, "categoria"));
 //		    return cat.toCollection(categoria.getMateriales());
-			
+//			
 			return listaAssembler.toCollection(repositorio.findByGrupo(grupo));
 		}
 		
@@ -79,7 +80,7 @@ public class CategoriaController {
 
 		@PostMapping
 		public CategoriaModel add(@Valid @RequestBody CategoriaPostModel model) {
-			Categoria categoria = repositorio.save(assembler.toEntity(model));
+			CategoriaConId categoria = repositorio.save(assembler.toEntity(model));
 			log.info("Añadido " + categoria);
 			return assembler.toModel(categoria);
 		}
@@ -88,7 +89,7 @@ public class CategoriaController {
 		@PutMapping("{id}")
 		public CategoriaModel edit(@Valid @PathVariable Long id, @RequestBody CategoriaPostModel model) {
 			  
-			Categoria categoria = repositorio.findById(id).map(cat -> {
+			CategoriaConId categoria = repositorio.findById(id).map(cat -> {
 				cat.setCategoria(model.getCategoria());
 				cat.setDescripcion(model.getDescripcion());
 				cat.setGrupo(model.getGrupo());
@@ -108,7 +109,7 @@ public class CategoriaController {
 		@DeleteMapping("{id}")
 		public void delete(@PathVariable Long id) {
 		    log.info("Borrado Categoria " + id);
-		    Categoria categoria = repositorio.findById(id).map(fam -> {
+		    CategoriaConId categoria = repositorio.findById(id).map(fam -> {
 					repositorio.deleteById(id);	
 					return fam;
 				})

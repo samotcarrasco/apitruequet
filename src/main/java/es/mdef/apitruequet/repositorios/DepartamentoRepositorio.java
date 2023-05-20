@@ -5,10 +5,9 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import es.mdef.apitruequet.entidades.Categoria;
-import es.mdef.apitruequet.entidades.Departamento;
+import es.mdef.apitruequet.entidades.DepartamentoConId;
 
-public interface DepartamentoRepositorio extends JpaRepository<Departamento, Long> {
-    Optional<Departamento> findByAbreviatura(String abreviatura);
+public interface DepartamentoRepositorio extends JpaRepository<DepartamentoConId, Long> {
+    Optional<DepartamentoConId> findByAbreviatura(String abreviatura);
 
 }

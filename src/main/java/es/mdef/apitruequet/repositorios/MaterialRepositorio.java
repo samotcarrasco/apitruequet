@@ -1,24 +1,28 @@
 package es.mdef.apitruequet.repositorios;
 
-import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
 
-import es.mdef.apitruequet.entidades.Material;
+import es.mdef.apitruequet.entidades.MaterialConId;
 import jakarta.transaction.Transactional;
 
-public interface MaterialRepositorio extends JpaRepository<Material, Long> {
+public interface MaterialRepositorio extends JpaRepository<MaterialConId, Long> {
 	
 	
+    //método personalizado. Por cada 3 materiales ofertados no inventariables, se regalarán 50 milis	
+	@Query("SELECT COUNT(*) FROM MaterialConId m WHERE m.dptoOferta = :param")
+	    int calcularBonificacion(@Param("param") String dptoOferta);
+	
+
+
 	@Modifying
 	@Transactional
 	@Query(value = "UPDATE public.materiales SET "
-					+ "inventariable = 'I',"
+					+ "tipo_material = 'I',"
 					+ "numero_serie = :numero_serie, " 
 					+ "noc = :noc, "
 					+ "bonificacion = null "
@@ -32,7 +36,7 @@ public interface MaterialRepositorio extends JpaRepository<Material, Long> {
 	@Modifying
 	@Transactional
 	@Query(value = "UPDATE public.materiales SET "
-					+ "inventariable = 'I',"
+					+ "tipo_material = 'N',"
 					+ "numero_serie = null, " 
 					+ "noc = null, "
 					+ "bonificacion = :bonificacion "

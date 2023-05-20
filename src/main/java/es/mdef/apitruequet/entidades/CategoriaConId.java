@@ -1,7 +1,9 @@
 package es.mdef.apitruequet.entidades;
 
 
-public class Categoria extends es.mde.acing.utils.CategoriaL{
+public class CategoriaConId  extends es.mde.acing.utils.CategoriaImpl {
+	
+
 	private Long id;
 	
 	public Long getId() {
@@ -11,7 +13,14 @@ public class Categoria extends es.mde.acing.utils.CategoriaL{
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
+	    
+//
+//	@Override
+//	@OneToMany(targetEntity=MaterialConId.class)
+//	public List<Material> getMateriales() {
+//		return (List<Material>) super.getMateriales();
+//	}
 	
 	@Override
 	public String toString() {

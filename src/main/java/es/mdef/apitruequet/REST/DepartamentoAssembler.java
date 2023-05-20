@@ -3,21 +3,19 @@ package es.mdef.apitruequet.REST;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
-import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import es.mdef.apitruequet.entidades.Departamento;
+import es.mdef.apitruequet.entidades.DepartamentoConId;
 
 
 
 @Component
-public class DepartamentoAssembler implements RepresentationModelAssembler<Departamento, DepartamentoModel>{
+public class DepartamentoAssembler implements RepresentationModelAssembler<DepartamentoConId, DepartamentoModel>{
 
 	
 	@Override
-	public DepartamentoModel toModel(Departamento entity) {
+	public DepartamentoModel toModel(DepartamentoConId entity) {
 		DepartamentoModel model = new DepartamentoModel();
 		model.setId(entity.getId());
 		model.setAbreviatura(entity.getAbreviatura());
@@ -31,7 +29,10 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		model.setDireccion(entity.getDireccion());
 		model.setLongitud(entity.getLongitud());
 		model.setLatitud(entity.getLatitud());
-		
+		int numMateriales = entity.getMaterialesOfertados() != null ||  entity.getMaterialesAdquiridos() != null 
+				? entity.getMaterialesOfertados().size() + entity.getMaterialesAdquiridos().size()
+			    : 0;
+		model.setNumMateriales(numMateriales);
 				
 		model.add(linkTo(methodOn(DepartamentoController.class).one(entity.getId())).withSelfRel());
 		model.add(linkTo(methodOn(DepartamentoController.class).materialesOfertados(entity.getId())).withRel("materialesOfertados"));
@@ -42,8 +43,8 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 	
 	
 	
-	public Departamento toEntity(DepartamentoPostModel model) {
-		Departamento departamento = new Departamento();
+	public DepartamentoConId toEntity(DepartamentoPostModel model) {
+		DepartamentoConId departamento = new DepartamentoConId();
 		departamento.setAbreviatura(model.getAbreviatura());
 		departamento.setAcuartelamiento(model.getAcuartelamiento());
 		departamento.setNombre(model.getNombre());
@@ -54,7 +55,7 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		departamento.setResponsableNombre(model.getResponsableNombre());
 		departamento.setResponsableEmpleo(model.getResponsableEmpleo());
 		departamento.setDireccion(model.getDireccion());
-		departamento.setLongitud(model.getDireccion());
+		departamento.setLongitud(model.getLongitud());
 		departamento.setLatitud(model.getLatitud());
 		
 		//las entidades ocn las que esta relacionada
