@@ -34,7 +34,7 @@ dependencies {
 	
 	
 	//librería externa alojada en github
-	implementation 'com.github.samotcarrasco:proyectoLibsamotcarrasco:de28f92'
+	implementation 'com.github.samotcarrasco:proyectoLibsamotcarrasco:d2442ee'
 	
 	
 }
