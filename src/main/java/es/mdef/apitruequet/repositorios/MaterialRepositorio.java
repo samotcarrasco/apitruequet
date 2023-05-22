@@ -13,11 +13,10 @@ import jakarta.transaction.Transactional;
 public interface MaterialRepositorio extends JpaRepository<MaterialConId, Long> {
 	
 	
-    //método personalizado. Por cada 3 materiales ofertados no inventariables, se regalarán 50 milis	
-	@Query("SELECT COUNT(*) FROM MaterialConId m WHERE m.dptoOferta = :param")
-	    int calcularBonificacion(@Param("param") String dptoOferta);
-	
-
+    //método personalizado. al ofertar NoInventariables, se bonificará con un 10% del total de milis no inventariables ofertaos
+	 @Query(value="SELECT round(sum(milis)*0.1) FROM public.materiales WHERE dptoo_Id = :param AND tipo_material = 'N'", nativeQuery = true)
+	 int calcularBonificacion(@Param("param") long dptoOferta);
+	 
 
 	@Modifying
 	@Transactional
@@ -45,6 +44,7 @@ public interface MaterialRepositorio extends JpaRepository<MaterialConId, Long> 
 	    @Param("bonificacion") int bonificacion,
 	    @Param("id") Long id
 	);
+	
 	
 
 	

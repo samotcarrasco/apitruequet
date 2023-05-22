@@ -29,6 +29,7 @@ public class MaterialController {
 	private final MaterialAssembler assembler;
 	private final MaterialListaAssembler listaAssembler;
 	
+	
 	private final Logger log;
 		
 	MaterialController(MaterialRepositorio repositorio, MaterialAssembler assembler, 
@@ -109,5 +110,6 @@ public class MaterialController {
 				})
 				.orElseThrow(() -> new RegisterNotFoundException(id, "material"));
 		}
+	
 	
 }

@@ -13,19 +13,6 @@ public class MaterialConId extends es.mde.acing.utils.MaterialImpl {
 		this.id = id;
 	}
 	
-//	@ManyToOne(fetch=FetchType.LAZY)
-//	@JoinColumn(name="dptoO_id")
-//	@NotNull(message="El departamento es obligatorio")
-//	private DepartamentoConId dptoOferta;
-//	
-//	@ManyToOne(fetch=FetchType.LAZY)
-//	@JoinColumn(name="dptoA_id", nullable = true)
-//	private DepartamentoConId dptoAdquisicion;
-	
-//	@ManyToOne(fetch=FetchType.LAZY)
-//	@JoinColumn(name="categoria_id")
-//	@NotNull(message="La categoria es obligatoria")
-//	private es.mde.acing.utils.Categoria categoria;
 	
 
 	public String getImgReducida() {

@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.mdef.apitruequet.ApiTruequetApp;
 import es.mdef.apitruequet.entidades.DepartamentoConId;
 import es.mdef.apitruequet.repositorios.DepartamentoRepositorio;
+import es.mdef.apitruequet.repositorios.MaterialRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;
 
@@ -33,6 +34,7 @@ import es.mde.acing.utils.DepartamentoImpl.TipoEmpleo;
 @RequestMapping("/departamentos")
 public class DepartamentoController {
 	private final DepartamentoRepositorio repositorio;
+	private final MaterialRepositorio matRepositorio;
 	private final DepartamentoAssembler assembler;
 	private final DepartamentoListaAssembler listaAssembler;
 	private final MaterialListaAssembler matListaAssembler;
@@ -40,8 +42,10 @@ public class DepartamentoController {
 	private final Logger log;
 		
 	DepartamentoController(DepartamentoRepositorio repositorio, DepartamentoAssembler assembler, 
-			DepartamentoListaAssembler listaAssembler, MaterialListaAssembler matListaAssembler) {
+			DepartamentoListaAssembler listaAssembler, MaterialListaAssembler matListaAssembler, 
+			MaterialRepositorio matRepositorio) {
 			this.repositorio = repositorio;
+			this.matRepositorio = matRepositorio;
 			this.assembler = assembler;
 			this.listaAssembler = listaAssembler;
 			this.matListaAssembler = matListaAssembler;
@@ -166,5 +170,15 @@ public class DepartamentoController {
 		    return assembler.toModel(departamento);
 		}
 		
+		
+		//metodo personalizado
+		@GetMapping("{id}/calcularBonificacion")
+		public BonificacionModel calcularBonificacion(@PathVariable long id) {
+			 int bonificacion = matRepositorio.calcularBonificacion(id); // Reemplaza 1 con el valor deseado para dptoOferta
+			  BonificacionModel bonificacionModel = new BonificacionModel();
+		      bonificacionModel.setBonificacion(bonificacion);
+
+		  return bonificacionModel;
+		}
 	
 }
