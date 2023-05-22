@@ -16,7 +16,9 @@ import es.mde.acing.utils.Inventariable;
 import es.mde.acing.utils.MaterialImpl.TipoMaterial;
 import es.mde.acing.utils.NoInventariable;
 import es.mdef.apitruequet.ApiTruequetApp;
+import es.mdef.apitruequet.entidades.DepartamentoConId;
 import es.mdef.apitruequet.entidades.MaterialConId;
+import es.mdef.apitruequet.repositorios.DepartamentoRepositorio;
 import es.mdef.apitruequet.repositorios.MaterialRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;
@@ -26,6 +28,7 @@ import jakarta.validation.Valid;
 @RequestMapping("/materiales")
 public class MaterialController {
 	private final MaterialRepositorio repositorio;
+	private final DepartamentoRepositorio repDepartamento;
 	private final MaterialAssembler assembler;
 	private final MaterialListaAssembler listaAssembler;
 	
@@ -33,10 +36,11 @@ public class MaterialController {
 	private final Logger log;
 		
 	MaterialController(MaterialRepositorio repositorio, MaterialAssembler assembler, 
-			MaterialListaAssembler listaAssembler) {
+			MaterialListaAssembler listaAssembler, DepartamentoRepositorio repDepartamento) {
 			this.repositorio = repositorio;
 			this.assembler = assembler;
 			this.listaAssembler = listaAssembler;
+			this.repDepartamento = repDepartamento;
 			log = ApiTruequetApp.log;
 		}
 		
@@ -59,6 +63,20 @@ public class MaterialController {
 		public MaterialModel add(@Valid @RequestBody MaterialPostModel model) {
 			MaterialConId material = repositorio.save(assembler.toEntity(model));
 			log.info("Añadido " + material);
+			
+			//actualizamos los milis del dpto 
+			  DepartamentoConId departamento = repDepartamento.findById(model.getDptoOferta().getId())
+				        .orElseThrow(() -> new RegisterNotFoundException(model.getDptoOferta().getId(), "Departamento"));
+
+			  int bonificacion = 0;
+			  if (model.getTipoMaterial()== TipoMaterial.noInventariable) {
+				  bonificacion = model.getBonificacion();
+			  }
+			  log.info("AUMENTANDO CREDITO (BONIFICACION EN  ",bonificacion,"MILIS");
+    		  departamento.aumentarCredito(bonificacion);
+    		 repDepartamento.save(departamento);
+			 log.info("Credito aumentado en " + bonificacion + " para " + departamento);
+				    
 			return assembler.toModel(material);
 		}
 		
