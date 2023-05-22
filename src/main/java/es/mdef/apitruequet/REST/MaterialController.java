@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.mde.acing.utils.Inventariable;
 import es.mde.acing.utils.MaterialImpl.TipoMaterial;
 import es.mde.acing.utils.NoInventariable;
-import es.mdef.apitruequet.GestionUsuariosApplication;
+import es.mdef.apitruequet.ApiTruequetApp;
 import es.mdef.apitruequet.entidades.MaterialConId;
 import es.mdef.apitruequet.repositorios.MaterialRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
@@ -36,7 +36,7 @@ public class MaterialController {
 			this.repositorio = repositorio;
 			this.assembler = assembler;
 			this.listaAssembler = listaAssembler;
-			log = GestionUsuariosApplication.log;
+			log = ApiTruequetApp.log;
 		}
 		
 	

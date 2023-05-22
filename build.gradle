@@ -25,8 +25,6 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
-//	implementation 'org.springframework.boot:spring-boot-starter-security'
-  //  runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql'	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'io.jsonwebtoken:jjwt:0.9.1'
@@ -34,7 +32,8 @@ dependencies {
 	
 	
 	//librería externa alojada en github
-	implementation 'com.github.samotcarrasco:proyectoLibsamotcarrasco:d2442ee'
+	//también se puede poner el commit en lugar de la release
+	implementation 'com.github.samotcarrasco:backend-truequet-lib:V1.1'
 	
 	
 }

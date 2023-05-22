@@ -56,7 +56,7 @@ public class MaterialAssembler implements RepresentationModelAssembler<MaterialC
 		}
 	
 		model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity.getCategoria()).getId())).withRel("categoria"));
-		model.add(linkTo(methodOn(DepartamentoController.class).one(((DepartamentoConId) entity.getDeptoOferta()).getId())).withRel("dptoOferta"));
+    	model.add(linkTo(methodOn(DepartamentoController.class).one(((DepartamentoConId) entity.getDeptoOferta()).getId())).withRel("dptoOferta"));
 		if (entity.getDptoAdquisicion() != null) {
 			model.add(linkTo(methodOn(DepartamentoController.class).one(((DepartamentoConId) entity.getDptoAdquisicion()).getId())).withRel("dptoAdquisicion"));
 		}

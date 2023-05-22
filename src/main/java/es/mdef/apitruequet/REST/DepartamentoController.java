@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.mdef.apitruequet.GestionUsuariosApplication;
+import es.mdef.apitruequet.ApiTruequetApp;
 import es.mdef.apitruequet.entidades.DepartamentoConId;
 import es.mdef.apitruequet.repositorios.DepartamentoRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
@@ -45,7 +45,7 @@ public class DepartamentoController {
 			this.assembler = assembler;
 			this.listaAssembler = listaAssembler;
 			this.matListaAssembler = matListaAssembler;
-			log = GestionUsuariosApplication.log;
+			log = ApiTruequetApp.log;
 		}
 		
 	

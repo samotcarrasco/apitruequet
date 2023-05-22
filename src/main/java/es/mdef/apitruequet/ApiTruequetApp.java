@@ -11,11 +11,11 @@ import org.springframework.web.client.RestTemplate;
 
 
 @SpringBootApplication
-public class GestionUsuariosApplication {
-	public static final Logger log = LoggerFactory.getLogger(GestionUsuariosApplication.class);
+public class ApiTruequetApp {
+	public static final Logger log = LoggerFactory.getLogger(ApiTruequetApp.class);
 	
 	public static void main(String[] args) {
-		SpringApplication.run(GestionUsuariosApplication.class, args);
+		SpringApplication.run(ApiTruequetApp.class, args);
 		
 		//probamos librería externa alojada en github
 //		Material mat = new Material(1,"ordenador");

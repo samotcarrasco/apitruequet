@@ -32,7 +32,8 @@ public class CategoriaAssembler implements RepresentationModelAssembler<Categori
 				
 		model.add(
 				linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity).getId())).withSelfRel(),
-		     	linkTo(methodOn(CategoriaController.class).materialesDeCategoria(((CategoriaConId) entity).getId())).withRel("materiales")
+		     	//linkTo(methodOn(CategoriaController.class).materialesDeCategoria(((CategoriaConId) entity).getId())).withRel("materiales")
+		     	linkTo(methodOn(CategoriaController.class).materialesDeCategoria(entity.getId())).withRel("materiales")
 				);
 		return model;
 	}

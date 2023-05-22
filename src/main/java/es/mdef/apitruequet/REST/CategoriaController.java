@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import es.mdef.apitruequet.GestionUsuariosApplication;
+import es.mdef.apitruequet.ApiTruequetApp;
 import es.mdef.apitruequet.entidades.CategoriaConId;
 import es.mde.acing.utils.CategoriaImpl.TipoGrupo;
 import es.mdef.apitruequet.repositorios.CategoriaRepositorio;
@@ -43,7 +43,7 @@ public class CategoriaController {
 			this.assembler = assembler;
 			this.listaAssembler = listaAssembler;
 			this.matListaAssembler = matListaAssembler;
-			log = GestionUsuariosApplication.log;
+			log = ApiTruequetApp.log;
 		}
 		
 	

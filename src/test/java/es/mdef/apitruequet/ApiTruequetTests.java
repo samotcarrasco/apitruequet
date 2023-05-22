@@ -1,10 +1,10 @@
-package es.mdef.gestionusuarios;
+package es.mdef.apitruequet;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class GestionusuariosApplicationTests {
+class ApiTruequetTests {
 
 	@Test
 	void contextLoads() {
