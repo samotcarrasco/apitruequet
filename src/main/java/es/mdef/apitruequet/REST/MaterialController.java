@@ -70,8 +70,9 @@ public class MaterialController {
 
 			  int bonificacion = 0;
 			  if (model.getTipoMaterial()== TipoMaterial.noInventariable) {
-				  bonificacion = model.getBonificacion();
+				  bonificacion = model.getBonificacion() > 0  ? model.getBonificacion() : 0 ;
 			  }
+			  
 			  log.info("AUMENTANDO CREDITO (BONIFICACION EN  ",bonificacion,"MILIS");
     		  departamento.aumentarCredito(bonificacion);
     		 repDepartamento.save(departamento);
