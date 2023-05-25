@@ -1,10 +1,13 @@
 package es.mdef.apitruequet.REST;
 
+import java.time.LocalDate;
+
 import org.slf4j.Logger;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -111,7 +114,6 @@ public class MaterialController {
 				mat.setDeptoOferta(model.getDptoOferta());
 				mat.setCategoria(model.getCategoria());
 				mat.setDptoAdquisicion(model.getDptoAdquisicion());
-				
 			
 			return repositorio.save(mat);
 			})
@@ -119,6 +121,19 @@ public class MaterialController {
 			log.info("Actualizado " + material);
 			return assembler.toModel(material);
 	}
+//		
+//		@PatchMapping("/{id}/fechaentrega")
+//		public MaterialModel patchFechaEntrega(@PathVariable Long id, @RequestBody LocalDate nuevaFechaEntrega) {
+//		   // Lógica para actualizar la fecha de entrega del material con el materialId proporcionado
+//		   // Aquí debes implementar la lógica adecuada para actualizar la fecha de entrega en tu sistema
+//			MaterialConId material = repositorio.findById(id).map(mat -> {
+//				mat.setFechaEngregaFisica(nuevaFechaEntrega);
+//				
+//				return repositorio.save(mat);
+//			})
+//		   
+//		   return assembler.toModel(material);
+//		}
 		
 		@DeleteMapping("{id}")
 		public void delete(@PathVariable Long id) {

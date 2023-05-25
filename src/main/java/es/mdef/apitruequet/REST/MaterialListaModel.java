@@ -1,5 +1,7 @@
 package es.mdef.apitruequet.REST;
 
+import java.time.LocalDate;
+
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
@@ -16,6 +18,8 @@ public class MaterialListaModel extends RepresentationModel<MaterialListaModel>{
 	private String dptoOfertaN;
 	private String dptoAdquisicionN;
 	private String categoriaN;
+	private String grupoN;
+
 	
 	private String descripcion;
 	private EstadoMaterial estado;
@@ -24,10 +28,10 @@ public class MaterialListaModel extends RepresentationModel<MaterialListaModel>{
 //	private String imagen;
 	private String imgReducida;
 	private int numMateriales;
-
-     	 
-
-
+	
+	// añadirmos fecha entrega
+	private LocalDate fechaEntregaFisica;
+	
 	public int getNumMateriales() {
 		return numMateriales;
 	}
@@ -118,5 +122,17 @@ public class MaterialListaModel extends RepresentationModel<MaterialListaModel>{
 	@Override
 	public String toString() {
 		return "MATERIAL [Nombre=" + getNombre() +"]";
+	}
+	public String getGrupoN() {
+		return grupoN;
+	}
+	public void setGrupoN(String grupoN) {
+		this.grupoN = grupoN;
+	}
+	public LocalDate getFechaEntregaFisica() {
+		return fechaEntregaFisica;
+	}
+	public void setFechaEntregaFisica(LocalDate fechaEntregaFisica) {
+		this.fechaEntregaFisica = fechaEntregaFisica;
 	}	
 }

@@ -15,10 +15,11 @@ public class MaterialModel extends RepresentationModel<MaterialModel>{
 	
 	private Long id;
 	private String nombre;
-	//estos 3 se rellenan en el Assemblers
+	//estos 4 se rellenan en el Assemblers
 	private String dptoOfertaN;
 	private String dptoAdquisicionN;
 	private String categoriaN;
+	private String grupoN;
 	
 	
 	private String descripcion;
@@ -35,6 +36,9 @@ public class MaterialModel extends RepresentationModel<MaterialModel>{
 	private String numeroSerie;
 	private int bonificacion;
 	private int numMateriales;
+	
+	// añadirmos fecha entrega
+	private LocalDate fechaEntregaFisica;
 
 	    	 
     	 
@@ -174,6 +178,18 @@ public class MaterialModel extends RepresentationModel<MaterialModel>{
 	@Override
 	public String toString() {
 		return "MATERIAL [Nombre=" + getNombre() +"]";
+	}
+	public String getGrupoN() {
+		return grupoN;
+	}
+	public void setGrupoN(String grupoN) {
+		this.grupoN = grupoN;
+	}
+	public LocalDate getFechaEntregaFisica() {
+		return fechaEntregaFisica;
+	}
+	public void setFechaEntregaFisica(LocalDate fechaEntregaFisica) {
+		this.fechaEntregaFisica = fechaEntregaFisica;
 	}
 	
 	

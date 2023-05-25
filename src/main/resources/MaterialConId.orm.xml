@@ -15,6 +15,9 @@
             <basic name="imgReducida" optional="false">
                <column name="imgReducida"/>
             </basic>
+            <basic name="fechaEntregaFisica" optional="true">
+               <column name="fechaEntregaFisica"/>
+            </basic>
            
         </attributes>
      </entity>

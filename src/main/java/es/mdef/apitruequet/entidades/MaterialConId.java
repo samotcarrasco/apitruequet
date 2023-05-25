@@ -1,10 +1,11 @@
 package es.mdef.apitruequet.entidades;
 
-
+import java.time.LocalDate;
 
 public class MaterialConId extends es.mde.acing.utils.MaterialImpl {
 	private Long id;
 	private String imgReducida;
+	private LocalDate fechaEngregaFisica;
 
 	public Long getId() {
 		return id;
@@ -24,6 +25,12 @@ public class MaterialConId extends es.mde.acing.utils.MaterialImpl {
 	@Override
 	public String toString() {
 		return "MATERIAL [Nombre=" + getNombre() +"]";
+	}
+	public LocalDate getFechaEngregaFisica() {
+		return fechaEngregaFisica;
+	}
+	public void setFechaEngregaFisica(LocalDate fechaEngregaFisica) {
+		this.fechaEngregaFisica = fechaEngregaFisica;
 	}
 	
 		
