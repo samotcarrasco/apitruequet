@@ -22,16 +22,17 @@ public class MaterialConId extends es.mde.acing.utils.MaterialImpl {
 	public void setImgReducida(String imgReducida) {
 		this.imgReducida = imgReducida;
 	}
-	@Override
-	public String toString() {
-		return "MATERIAL [Nombre=" + getNombre() +"]";
-	}
+
 	public LocalDate getFechaEngregaFisica() {
 		return fechaEngregaFisica;
 	}
 	public void setFechaEngregaFisica(LocalDate fechaEngregaFisica) {
 		this.fechaEngregaFisica = fechaEngregaFisica;
 	}
-	
+
+	@Override
+	public String toString() {
+		return "MATERIAL [Nombre=" + getNombre() +"]";
+	}
 		
 }
