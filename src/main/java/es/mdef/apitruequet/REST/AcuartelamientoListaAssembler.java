@@ -36,18 +36,18 @@ public class AcuartelamientoListaAssembler <T extends Acuartelamiento> implement
 		model.setLongitud(((AcuartelamientoConId) entity).getLongitud());
 		model.setLatitud(((AcuartelamientoConId) entity).getLatitud());
 		
-		int numMateriales = 0;
-		System.out.println("materiales" + numMateriales);
-		if (entity.getDepartamentos() != null) {
-			for (Departamento departamento : entity.getDepartamentos()) {
-		    numMateriales += departamento.getMaterialesOfertados().size() +  departamento.getMaterialesAdquiridos().size();
-			}
-		}
+//		int numMateriales = 0;
+//		System.out.println("materiales" + numMateriales);
+//		if (entity.getDepartamentos() != null) {
+//			for (Departamento departamento : entity.getDepartamentos()) {
+//		    numMateriales += departamento.getMaterialesOfertados().size() +  departamento.getMaterialesAdquiridos().size();
+//			}
+//		}
 		
-		int numDptos = entity.getDepartamentos().size();
+		//int numDptos = entity.getDepartamentos().size();
 
-		model.setNumDepartamentos(numDptos);
-		model.setNumMateriales(numMateriales);
+		model.setNumDepartamentos(0);
+		model.setNumMateriales(0);
 		model.add(linkTo(methodOn(AcuartelamientoController.class).one(((AcuartelamientoConId) entity).getId())).withSelfRel());
 		model.add(linkTo(methodOn(AcuartelamientoController.class).departamentos(((AcuartelamientoConId) entity).getId())).withRel("departamentos"));
 				
