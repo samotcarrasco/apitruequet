@@ -1,11 +1,8 @@
 package es.mdef.apitruequet.entidades;
 
-import java.util.List;
 
-import es.mde.acing.utils.Acuartelamiento;
 import es.mde.acing.utils.Departamento;
 import es.mde.acing.utils.DepartamentoImpl;
-import es.mde.acing.utils.Material;
 
 public class DepartamentoConId extends DepartamentoImpl implements Departamento{
 	

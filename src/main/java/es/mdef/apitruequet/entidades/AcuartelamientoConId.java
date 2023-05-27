@@ -1,10 +1,7 @@
 package es.mdef.apitruequet.entidades;
 
-import java.util.List;
-
 import es.mde.acing.utils.Acuartelamiento;
 import es.mde.acing.utils.AcuartelamientoImpl;
-import es.mde.acing.utils.Departamento;
 
 
 public class AcuartelamientoConId extends AcuartelamientoImpl implements Acuartelamiento{

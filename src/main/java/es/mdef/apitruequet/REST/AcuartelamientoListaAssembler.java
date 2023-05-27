@@ -37,14 +37,14 @@ public class AcuartelamientoListaAssembler <T extends Acuartelamiento> implement
 		model.setLatitud(((AcuartelamientoConId) entity).getLatitud());
 		
 		int numMateriales = 0;
-		
+		System.out.println("materiales" + numMateriales);
 		if (entity.getDepartamentos() != null) {
 			for (Departamento departamento : entity.getDepartamentos()) {
-		    numMateriales += departamento.getMaterialesOfertados().size();
+		    numMateriales += departamento.getMaterialesOfertados().size() +  departamento.getMaterialesAdquiridos().size();
 			}
 		}
 		
-		int numDptos = entity.getDepartamentos() != null  ? entity.getDepartamentos().size() : 0;
+		int numDptos = entity.getDepartamentos().size();
 
 		model.setNumDepartamentos(numDptos);
 		model.setNumMateriales(numMateriales);

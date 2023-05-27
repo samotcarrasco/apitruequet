@@ -24,6 +24,7 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		model.setAbreviatura(entity.getAbreviatura());
 		model.setNombre(entity.getNombre());
 		//model.setAcuartelamiento((AcuartelamientoConId) entity.getAcuartelamiento());
+		model.setAcuartelamientoN(((AcuartelamientoConId) entity.getAcuartelamiento()).getAbreviatura());
 		model.setCredito(entity.getCredito());
 		model.setEmail(entity.getEmail());
 		model.setTelefono(entity.getTelefono());
@@ -38,7 +39,7 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		model.setNumMateriales(numMateriales);
 				
 		model.add(linkTo(methodOn(DepartamentoController.class).one(entity.getId())).withSelfRel());
-	//	model.add(linkTo(methodOn(AcuartelamientoController.class).one(((AcuartelamientoConId) entity.getAcuartelamiento()).getId())).withRel("acuartelamiento"));
+		model.add(linkTo(methodOn(AcuartelamientoController.class).one(((AcuartelamientoConId) entity.getAcuartelamiento()).getId())).withRel("acuartelamiento"));
 		model.add(linkTo(methodOn(DepartamentoController.class).materialesOfertados(entity.getId())).withRel("materialesOfertados"));
 		model.add(linkTo(methodOn(DepartamentoController.class).materialesAdquiridos(entity.getId())).withRel("materialesAdquiridos"));
 		return model;

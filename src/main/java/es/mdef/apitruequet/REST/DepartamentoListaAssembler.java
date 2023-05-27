@@ -25,7 +25,8 @@ public class DepartamentoListaAssembler <T extends Departamento> implements Repr
 		model.setId(((DepartamentoConId) entity).getId());
 		model.setAbreviatura(((DepartamentoConId) entity).getAbreviatura());
 		model.setNombre(((DepartamentoConId) entity).getNombre());
-		model.setAcuartelamiento((AcuartelamientoConId) entity.getAcuartelamiento());
+		//model.setAcuartelamiento((AcuartelamientoConId) entity.getAcuartelamiento());
+		model.setAcuartelamientoN(((AcuartelamientoConId) entity.getAcuartelamiento()).getAbreviatura());
 		model.setCredito(entity.getCredito());
 		model.setEmail(((DepartamentoConId) entity).getEmail());
 		model.setTelefono(((DepartamentoConId) entity).getTelefono());
@@ -37,7 +38,7 @@ public class DepartamentoListaAssembler <T extends Departamento> implements Repr
 		
 		
 				
-		model.add(linkTo(methodOn(DepartamentoController.class).one(((DepartamentoConId) entity).getId())).withSelfRel());
+		model.add(linkTo(methodOn(AcuartelamientoController.class).one(((AcuartelamientoConId) entity.getAcuartelamiento()).getId())).withRel("acuartelamiento"));
 		model.add(linkTo(methodOn(DepartamentoController.class).materialesOfertados(((DepartamentoConId) entity).getId())).withRel("materialesOfertados"));
      	model.add(linkTo(methodOn(DepartamentoController.class).materialesAdquiridos(((DepartamentoConId) entity).getId())).withRel("materialesAdquiridos"));
 

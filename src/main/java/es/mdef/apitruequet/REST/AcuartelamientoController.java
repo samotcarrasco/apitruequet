@@ -56,12 +56,17 @@ public class AcuartelamientoController {
 		}
 		
 		@GetMapping("{id}/departamentos")
-		public CollectionModel<DepartamentoModel> departamentos(@PathVariable Long id) {
+		public CollectionModel<DepartamentoListaModel> departamentos(@PathVariable Long id) {
 			AcuartelamientoConId acuartelamiento = (AcuartelamientoConId) repositorio.findById(id)
 					.orElseThrow(() -> new RegisterNotFoundException(id, "Acuartelamiento"));
 		    return depListaAssembler.toCollection(acuartelamiento.getDepartamentos());
 		}
 		
+		
+		@GetMapping("/siglas")
+		 public String[] bases() {
+		     return repositorio.bases();
+		  }
 		
 		
 		
@@ -87,22 +92,24 @@ public class AcuartelamientoController {
 		
 		
 		@PutMapping("{id}")
-		public AcuartelamientoModel edit(@Valid @PathVariable Long id, @RequestBody AcuartelamientoModel model) {
+		public AcuartelamientoModel edit(@Valid @PathVariable Long id, @RequestBody AcuartelamientoPostModel model) {
 			  
-			AcuartelamientoConId departamento = repositorio.findById(id).map(dep -> {
+			AcuartelamientoConId acuartelamiento = repositorio.findById(id).map(acu -> {
 				
-				dep.setNombre(model.getNombre());
-				dep.setAbreviatura(model.getAbreviatura());
-				dep.setEmail(model.getEmail());
-				dep.setResponsableEmpleo(model.getResponsableEmpleo());
-				dep.setResponsableNombre(model.getResponsableNombre());
-				dep.setTelefono(model.getTelefono());
+				acu.setNombre(model.getNombre());
+				acu.setAbreviatura(model.getAbreviatura());
+				acu.setEmail(model.getEmail());
+				acu.setResponsableEmpleo(model.getResponsableEmpleo());
+				acu.setResponsableNombre(model.getResponsableNombre());
+				acu.setTelefono(model.getTelefono());
+				acu.setLongitud(model.getLongitud());
+				acu.setLatitud(model.getLatitud());
 				
-			return repositorio.save(dep);
+			return repositorio.save(acu);
 			})
 			.orElseThrow(() -> new RegisterNotFoundException(id, "Acuartelamiento"));
-			log.info("Actualizado " + departamento);
-			return assembler.toModel(departamento);
+			log.info("Actualizado " + acuartelamiento);
+			return assembler.toModel(acuartelamiento);
 	}
 		
 		@DeleteMapping("{id}")

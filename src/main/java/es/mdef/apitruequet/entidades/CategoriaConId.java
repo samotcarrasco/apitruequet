@@ -14,14 +14,6 @@ public class CategoriaConId  extends es.mde.acing.utils.CategoriaImpl {
 		this.id = id;
 	}
 	
-	    
-//
-//	@Override
-//	@OneToMany(targetEntity=MaterialConId.class)
-//	public List<Material> getMateriales() {
-//		return (List<Material>) super.getMateriales();
-//	}
-	
 	@Override
 	public String toString() {
 		return "Categoria [id=" + getId() + ", nombre" + getCategoria() + "]";

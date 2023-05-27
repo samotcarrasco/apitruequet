@@ -40,7 +40,7 @@ public class AcuartelamientoAssembler implements RepresentationModelAssembler<Ac
 		
 		if (entity.getDepartamentos() != null) {
 			for (Departamento departamento : entity.getDepartamentos()) {
-		    numMateriales += departamento.getMaterialesOfertados().size();
+		    numMateriales += departamento.getMaterialesOfertados().size() +  departamento.getMaterialesAdquiridos().size();
 			}
 		}
 		
@@ -73,12 +73,5 @@ public class AcuartelamientoAssembler implements RepresentationModelAssembler<Ac
 		return acuartelamiento;
 	}
 	
-	
 
-	public CollectionModel<AcuartelamientoModel> toCollection(List<AcuartelamientoConId> lista) {
-		CollectionModel<AcuartelamientoModel> collection = CollectionModel.of(
-				lista.stream().map(this::toModel).collect(Collectors.toList())
-				);		
-		return collection;
-	}
 }

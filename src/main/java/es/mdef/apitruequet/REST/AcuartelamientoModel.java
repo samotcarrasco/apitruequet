@@ -11,14 +11,15 @@ import es.mdef.apitruequet.entidades.AcuartelamientoConId;
 
 
 
-@Relation(itemRelation="departamento")
+//@Relation(itemRelation="acuartelamiento")
+//usamos el mismo modelo para 1 y para listas
+@Relation(collectionRelation="acuartelamientos")
 public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>{
 	
 	private Long id;
 	
 	private String nombre;
 	private String abreviatura;
-	private AcuartelamientoConId acuartelamiento;
 	private String email;
 	private TipoEmpleo responsableEmpleo;
 	private String responsableNombre;
@@ -40,10 +41,6 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 
 	public String getAbreviatura() {
 		return abreviatura;
-	}
-
-	public AcuartelamientoConId getAcuartelamiento() {
-		return acuartelamiento;
 	}
 
 
@@ -79,9 +76,6 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 		this.abreviatura = abreviatura;
 	}
 
-	public void setAcuartelamiento(AcuartelamientoConId acuartelamiento) {
-		this.acuartelamiento = acuartelamiento;
-	}
 
 	public void setResponsableEmpleo(TipoEmpleo responsableEmpleo) {
 		this.responsableEmpleo = responsableEmpleo;

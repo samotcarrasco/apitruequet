@@ -18,7 +18,8 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 	
 	private String nombre;
 	private String abreviatura;
-	private AcuartelamientoConId acuartelamiento;
+//	private AcuartelamientoConId acuartelamiento;
+	private String acuartelamientoN;
 	private String email;
 	private int credito;
 	private TipoEmpleo responsableEmpleo;
@@ -42,9 +43,9 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 		return abreviatura;
 	}
 
-	public AcuartelamientoConId getAcuartelamiento() {
-		return acuartelamiento;
-	}
+//	public AcuartelamientoConId getAcuartelamiento() {
+//		return acuartelamiento;
+//	}
 
 	public int getCredito() {
 		return credito;
@@ -82,9 +83,9 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 		this.abreviatura = abreviatura;
 	}
 
-	public void setAcuartelamiento(AcuartelamientoConId acuartelamiento) {
-		this.acuartelamiento = acuartelamiento;
-	}
+//	public void setAcuartelamiento(AcuartelamientoConId acuartelamiento) {
+//		this.acuartelamiento = acuartelamiento;
+//	}
 
 	public void setCredito(int credito) {
 		this.credito = credito;
@@ -138,6 +139,14 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 	@Override
 	public String toString() {
 		return "DPTO MODELO [id=" + getId() + ", nombre" + getNombre() + "]";
+	}
+
+	public String getAcuartelamientoN() {
+		return acuartelamientoN;
+	}
+
+	public void setAcuartelamientoN(String acuartelamientoN) {
+		this.acuartelamientoN = acuartelamientoN;
 	}
 	
 	

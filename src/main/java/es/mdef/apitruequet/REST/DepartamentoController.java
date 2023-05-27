@@ -108,6 +108,9 @@ public class DepartamentoController {
 				dep.setResponsableEmpleo(model.getResponsableEmpleo());
 				dep.setResponsableNombre(model.getResponsableNombre());
 				dep.setTelefono(model.getTelefono());
+				dep.setLongitud(model.getLongitud());
+				dep.setLatitud(model.getLatitud());
+
 				
 			return repositorio.save(dep);
 			})
