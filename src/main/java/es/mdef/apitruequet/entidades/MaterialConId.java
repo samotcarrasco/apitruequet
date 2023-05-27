@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class MaterialConId extends es.mde.acing.utils.MaterialImpl {
 	private Long id;
 	private String imgReducida;
-	private LocalDate fechaEngregaFisica;
+	private LocalDate fechaEntregaFisica;
 
 	public Long getId() {
 		return id;
@@ -24,10 +24,10 @@ public class MaterialConId extends es.mde.acing.utils.MaterialImpl {
 	}
 
 	public LocalDate getFechaEngregaFisica() {
-		return fechaEngregaFisica;
+		return fechaEntregaFisica;
 	}
 	public void setFechaEngregaFisica(LocalDate fechaEngregaFisica) {
-		this.fechaEngregaFisica = fechaEngregaFisica;
+		this.fechaEntregaFisica = fechaEngregaFisica;
 	}
 
 	@Override

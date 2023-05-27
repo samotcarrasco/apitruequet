@@ -6,13 +6,16 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
+import es.mde.acing.utils.Departamento;
+import es.mde.acing.utils.Unidad;
+import es.mde.acing.utils.UnidadImpl;
+import es.mdef.apitruequet.entidades.AcuartelamientoConId;
 import es.mdef.apitruequet.entidades.DepartamentoConId;
 
 
 
 @Component
 public class DepartamentoAssembler implements RepresentationModelAssembler<DepartamentoConId, DepartamentoModel>{
-
 	
 	@Override
 	public DepartamentoModel toModel(DepartamentoConId entity) {
@@ -20,7 +23,7 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		model.setId(entity.getId());
 		model.setAbreviatura(entity.getAbreviatura());
 		model.setNombre(entity.getNombre());
-		model.setAcuartelamiento(entity.getAcuartelamiento());
+		//model.setAcuartelamiento((AcuartelamientoConId) entity.getAcuartelamiento());
 		model.setCredito(entity.getCredito());
 		model.setEmail(entity.getEmail());
 		model.setTelefono(entity.getTelefono());
@@ -35,6 +38,7 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		model.setNumMateriales(numMateriales);
 				
 		model.add(linkTo(methodOn(DepartamentoController.class).one(entity.getId())).withSelfRel());
+	//	model.add(linkTo(methodOn(AcuartelamientoController.class).one(((AcuartelamientoConId) entity.getAcuartelamiento()).getId())).withRel("acuartelamiento"));
 		model.add(linkTo(methodOn(DepartamentoController.class).materialesOfertados(entity.getId())).withRel("materialesOfertados"));
 		model.add(linkTo(methodOn(DepartamentoController.class).materialesAdquiridos(entity.getId())).withRel("materialesAdquiridos"));
 		return model;
@@ -50,6 +54,7 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		departamento.setNombre(model.getNombre());
 		//inicialemnte se asignan 1000 milis a los departamentos
 		departamento.setCredito(1000);
+		//departamento.setCredito(model.getCredito());
 		departamento.setEmail(model.getEmail());
 		departamento.setTelefono(model.getTelefono());
 		departamento.setResponsableNombre(model.getResponsableNombre());

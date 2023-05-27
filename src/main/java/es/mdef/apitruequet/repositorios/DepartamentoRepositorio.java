@@ -9,5 +9,4 @@ import es.mdef.apitruequet.entidades.DepartamentoConId;
 
 public interface DepartamentoRepositorio extends JpaRepository<DepartamentoConId, Long> {
     Optional<DepartamentoConId> findByAbreviatura(String abreviatura);
-
 }

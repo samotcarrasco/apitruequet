@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_1_0.xsd" 
+	version="1.0"> 
+	
+      <mapped-superclass class="es.mde.acing.utils.DepartamentoImpl" access="FIELD">
+        <attributes>
+            <many-to-one name="acuartelamiento" fetch="LAZY" target-entity="es.mdef.apitruequet.entidades.AcuartelamientoConId">
+                <join-column name="acuartelamiento_id" referenced-column-name="ID" />
+            </many-to-one>
+            <one-to-many name="materialesOfertados" mapped-by="dptoOferta" target-entity="es.mdef.apitruequet.entidades.MaterialConId" />
+            <one-to-many name="materialesAdquiridos" mapped-by="dptoAdquisicion" target-entity="es.mdef.apitruequet.entidades.MaterialConId" />
+        </attributes>
+    </mapped-superclass>
+</entity-mappings>

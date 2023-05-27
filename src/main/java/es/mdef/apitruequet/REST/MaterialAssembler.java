@@ -14,6 +14,7 @@ import es.mdef.apitruequet.entidades.MaterialConId;
 import es.mdef.apitruequet.entidades.NoInventariable;
 import es.mde.acing.utils.Material;
 import es.mde.acing.utils.MaterialImpl.TipoMaterial;
+import es.mde.acing.utils.UnidadImpl;
 
 
 
@@ -37,12 +38,12 @@ public class MaterialAssembler implements RepresentationModelAssembler<MaterialC
 				
 		//por compodidad para el front, estos tres los devolvemos como String
 		model.setCategoriaN(entity.getCategoria().getCategoria());
-		model.setDptoOfertaN(entity.getDeptoOferta().getAbreviatura());
+		model.setDptoOfertaN(((DepartamentoConId) entity.getDeptoOferta()).getAbreviatura());
 		model.setGrupoN(entity.getCategoria().getGrupo().toString());
 		
 		model.setFechaEntregaFisica(entity.getFechaEngregaFisica());
 		
-		String nombreUnidadOferta = entity.getDptoAdquisicion() != null ? entity.getDptoAdquisicion().getAbreviatura() : "-";
+		String nombreUnidadOferta = entity.getDptoAdquisicion() != null ? ((DepartamentoConId) entity.getDptoAdquisicion()).getAbreviatura() : "-";
 		model.setDptoAdquisicionN(nombreUnidadOferta);
 		
 				

@@ -5,19 +5,13 @@
 	version="1.0"> 
 	
      <mapped-superclass class="es.mde.acing.utils.CategoriaImpl" access="FIELD">
-     						   
-
-        <attributes>
-
+       <attributes>
             <basic name="categoria" />
             <basic name="descripcion"/>
             <basic name="grupo" />
             <basic name="minMilis" />
             <basic name="maxMilis" />
-      		
       		<one-to-many name="materiales" mapped-by="categoria" target-entity="es.mdef.apitruequet.entidades.MaterialConId"/>
-      	 	     
         </attributes>
     </mapped-superclass>
-
 </entity-mappings>

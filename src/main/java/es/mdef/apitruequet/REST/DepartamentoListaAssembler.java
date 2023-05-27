@@ -10,40 +10,43 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
+import es.mde.acing.utils.Departamento;
+import es.mdef.apitruequet.entidades.AcuartelamientoConId;
 import es.mdef.apitruequet.entidades.DepartamentoConId;
 
 
 @Component
-public class DepartamentoListaAssembler  implements RepresentationModelAssembler<DepartamentoConId, DepartamentoListaModel>{
+public class DepartamentoListaAssembler <T extends Departamento> implements RepresentationModelAssembler<T, DepartamentoListaModel>{
 
 	
 	@Override
-	public DepartamentoListaModel toModel(DepartamentoConId entity) {
+	public DepartamentoListaModel toModel(T entity) {
 		DepartamentoListaModel model = new DepartamentoListaModel();
-		model.setId(entity.getId());
-		model.setAbreviatura(entity.getAbreviatura());
-		model.setNombre(entity.getNombre());
-		model.setAcuartelamiento(entity.getAcuartelamiento());
+		model.setId(((DepartamentoConId) entity).getId());
+		model.setAbreviatura(((DepartamentoConId) entity).getAbreviatura());
+		model.setNombre(((DepartamentoConId) entity).getNombre());
+		model.setAcuartelamiento((AcuartelamientoConId) entity.getAcuartelamiento());
 		model.setCredito(entity.getCredito());
-		model.setEmail(entity.getEmail());
-		model.setTelefono(entity.getTelefono());
-		model.setResponsableNombre(entity.getResponsableNombre());
-		model.setResponsableEmpleo(entity.getResponsableEmpleo());
-		model.setDireccion(entity.getDireccion());
-		model.setLongitud(entity.getLongitud());
-		model.setLatitud(entity.getLatitud());
+		model.setEmail(((DepartamentoConId) entity).getEmail());
+		model.setTelefono(((DepartamentoConId) entity).getTelefono());
+		model.setResponsableNombre(((DepartamentoConId) entity).getResponsableNombre());
+		model.setResponsableEmpleo(((DepartamentoConId) entity).getResponsableEmpleo());
+		model.setDireccion(((DepartamentoConId) entity).getDireccion());
+		model.setLongitud(((DepartamentoConId) entity).getLongitud());
+		model.setLatitud(((DepartamentoConId) entity).getLatitud());
+		
 		
 				
-		model.add(linkTo(methodOn(DepartamentoController.class).one(entity.getId())).withSelfRel());
-		model.add(linkTo(methodOn(DepartamentoController.class).materialesOfertados(entity.getId())).withRel("materialesOfertados"));
-     	model.add(linkTo(methodOn(DepartamentoController.class).materialesAdquiridos(entity.getId())).withRel("materialesAdquiridos"));
+		model.add(linkTo(methodOn(DepartamentoController.class).one(((DepartamentoConId) entity).getId())).withSelfRel());
+		model.add(linkTo(methodOn(DepartamentoController.class).materialesOfertados(((DepartamentoConId) entity).getId())).withRel("materialesOfertados"));
+     	model.add(linkTo(methodOn(DepartamentoController.class).materialesAdquiridos(((DepartamentoConId) entity).getId())).withRel("materialesAdquiridos"));
 
 		return model;
 	}
 	
 	
 	
-	public CollectionModel<DepartamentoListaModel> toCollection(List<DepartamentoConId> lista) {
+	public CollectionModel<DepartamentoListaModel> toCollection(List<T> lista) {
 		CollectionModel<DepartamentoListaModel> collection = CollectionModel.of(
 				lista.stream().map(this::toModel).collect(Collectors.toList())
 				);		

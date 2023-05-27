@@ -12,7 +12,7 @@ import es.mdef.apitruequet.entidades.AcuartelamientoConId;
 
 
 @Relation(itemRelation="departamento")
-public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
+public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>{
 	
 	private Long id;
 	
@@ -20,7 +20,6 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 	private String abreviatura;
 	private AcuartelamientoConId acuartelamiento;
 	private String email;
-	private int credito;
 	private TipoEmpleo responsableEmpleo;
 	private String responsableNombre;
 	private String telefono;
@@ -28,6 +27,7 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 	private String latitud;
 	private String longitud;
 	private int numMateriales;
+	private int numDepartamentos;
 	
 	
 	public Long getId() {
@@ -46,9 +46,6 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 		return acuartelamiento;
 	}
 
-	public int getCredito() {
-		return credito;
-	}
 
 	public TipoEmpleo getResponsableEmpleo() {
 		return responsableEmpleo;
@@ -84,10 +81,6 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 
 	public void setAcuartelamiento(AcuartelamientoConId acuartelamiento) {
 		this.acuartelamiento = acuartelamiento;
-	}
-
-	public void setCredito(int credito) {
-		this.credito = credito;
 	}
 
 	public void setResponsableEmpleo(TipoEmpleo responsableEmpleo) {
@@ -138,6 +131,14 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 	@Override
 	public String toString() {
 		return "DPTO MODELO [id=" + getId() + ", nombre" + getNombre() + "]";
+	}
+
+	public int getNumDepartamentos() {
+		return numDepartamentos;
+	}
+
+	public void setNumDepartamentos(int numDepartamentos) {
+		this.numDepartamentos = numDepartamentos;
 	}
 	
 	

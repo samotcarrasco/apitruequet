@@ -11,6 +11,7 @@ import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
 import es.mde.acing.utils.Material;
+import es.mde.acing.utils.UnidadImpl;
 import es.mdef.apitruequet.entidades.CategoriaConId;
 import es.mdef.apitruequet.entidades.DepartamentoConId;
 import es.mdef.apitruequet.entidades.MaterialConId;
@@ -33,13 +34,13 @@ public class MaterialListaAssembler<T extends Material>  implements Representati
 		
 		//por compodidad para el front, estos tres los devolvemoscomo String
 		model.setCategoriaN(entity.getCategoria().getCategoria());
-		model.setDptoOfertaN(entity.getDeptoOferta().getAbreviatura());
+		model.setDptoOfertaN(((DepartamentoConId) entity.getDeptoOferta()).getAbreviatura());
 		model.setGrupoN(entity.getCategoria().getGrupo().toString());
 		model.setFechaEntregaFisica(((MaterialConId) entity).getFechaEngregaFisica());
 
 		
-		String nombreUnidadOferta = entity.getDptoAdquisicion() != null ? entity.getDptoAdquisicion().getAbreviatura(): "-";
-		model.setDptoAdquisicionN(nombreUnidadOferta);
+		String nombreDptoOferta = entity.getDptoAdquisicion() != null ? ((DepartamentoConId) entity.getDptoAdquisicion()).getAbreviatura(): "-";
+		model.setDptoAdquisicionN(nombreDptoOferta);
 			
 		//model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity.getCategoria()).getId())).withRel("categoria"));
 		model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity.getCategoria()).getId())).withRel("categoria"));		
