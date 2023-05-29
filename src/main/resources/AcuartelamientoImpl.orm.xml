@@ -5,8 +5,8 @@
 	version="1.0"> 
 	
      <mapped-superclass class="es.mde.acing.utils.AcuartelamientoImpl" access="FIELD">
-        <attributes>
-		 	 <one-to-many name="departamentos" mapped-by="acuartelamiento" target-entity="es.mdef.apitruequet.entidades.DepartamentoConId"/>
-		</attributes>
+       <attributes>
+      		<one-to-many name="departamentos" mapped-by="acuartelamiento" target-entity="es.mdef.apitruequet.entidades.DepartamentoConId"/>
+        </attributes>
     </mapped-superclass>
 </entity-mappings>

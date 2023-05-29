@@ -14,8 +14,10 @@ public interface MaterialRepositorio extends JpaRepository<MaterialConId, Long> 
 	
 	
     //método personalizado. al ofertar NoInventariables, se bonificará con un 10% del total de milis no inventariables ofertaos
-	 @Query(value="SELECT round(sum(milis)*0.1) FROM public.materiales WHERE dptoo_Id = :param AND tipo_material = 'N'", nativeQuery = true)
-	 int calcularBonificacion(@Param("param") long dptoOferta);
+	//utilizamos calesce para que si no hay valores, devuelva 0
+	@Query(value="SELECT COALESCE(round(sum(milis)*0.1), 0) FROM public.materiales "
+						+ "WHERE dptoo_Id = :param AND tipo_material = 'N'", nativeQuery = true) 
+	int calcularBonificacion(@Param("param") long dptoOferta);
 	 
 
 	@Modifying

@@ -11,12 +11,13 @@ import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
 import es.mde.acing.utils.Departamento;
+import es.mde.acing.utils.DepartamentoImpl;
 import es.mdef.apitruequet.entidades.AcuartelamientoConId;
 import es.mdef.apitruequet.entidades.DepartamentoConId;
 
 
 @Component
-public class DepartamentoListaAssembler <T extends Departamento> implements RepresentationModelAssembler<T, DepartamentoListaModel>{
+public class DepartamentoListaAssembler <T extends DepartamentoImpl> implements RepresentationModelAssembler<T, DepartamentoListaModel>{
 
 	
 	@Override

@@ -1,5 +1,6 @@
 package es.mdef.apitruequet.entidades;
 
+
 import es.mde.acing.utils.Acuartelamiento;
 import es.mde.acing.utils.AcuartelamientoImpl;
 
@@ -15,5 +16,6 @@ public class AcuartelamientoConId extends AcuartelamientoImpl implements Acuarte
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 }

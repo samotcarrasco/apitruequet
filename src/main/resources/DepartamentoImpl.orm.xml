@@ -7,7 +7,9 @@
       <mapped-superclass class="es.mde.acing.utils.DepartamentoImpl" access="FIELD">
         <attributes>
             <basic name="credito"/>
-      
+            <basic name="longitud"/>
+			<basic name="latitud"/>		
+  
             <many-to-one name="acuartelamiento" fetch="LAZY" target-entity="es.mdef.apitruequet.entidades.AcuartelamientoConId" optional="false">
                 <join-column name="acuartelamiento_id" referenced-column-name="ID" />
             </many-to-one>

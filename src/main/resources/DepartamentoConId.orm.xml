@@ -11,11 +11,6 @@
             <id name="id">
                 <generated-value strategy="IDENTITY"/>
             </id>
-      <!--       <many-to-one name="acuartelamiento" fetch="LAZY" target-entity="es.mdef.apitruequet.entidades.AcuartelamientoConId">
-                <join-column name="acuartelamiento_id" referenced-column-name="ID" />
-            </many-to-one>
-            <one-to-many name="materialesOfertados" mapped-by="dptoOferta" target-entity="es.mdef.apitruequet.entidades.MaterialConId" />
-            <one-to-many name="materialesAdquiridos" mapped-by="dptoAdquisicion" target-entity="es.mdef.apitruequet.entidades.MaterialConId" /> -->
         </attributes>
         
     </entity>

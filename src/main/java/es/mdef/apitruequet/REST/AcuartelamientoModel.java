@@ -25,8 +25,6 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 	private String responsableNombre;
 	private String telefono;
 	private String direccion;
-	private String latitud;
-	private String longitud;
 	private int numMateriales;
 	private int numDepartamentos;
 	
@@ -102,24 +100,8 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 		return direccion;
 	}
 
-	public String getLatitud() {
-		return latitud;
-	}
-
-	public String getLongitud() {
-		return longitud;
-	}
-
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
-	}
-
-	public void setLatitud(String latitud) {
-		this.latitud = latitud;
-	}
-
-	public void setLongitud(String longitud) {
-		this.longitud = longitud;
 	}
 
 	@Override

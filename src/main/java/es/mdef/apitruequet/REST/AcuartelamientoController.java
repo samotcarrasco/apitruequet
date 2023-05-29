@@ -21,6 +21,7 @@ import es.mdef.apitruequet.repositorios.AcuartelamientoRepositorio;
 import es.mdef.apitruequet.repositorios.DepartamentoRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;
+import es.mde.acing.utils.CategoriaImpl.TipoGrupo;
 import es.mde.acing.utils.UnidadImpl.TipoEmpleo;
 
 
@@ -57,8 +58,8 @@ public class AcuartelamientoController {
 		
 		@GetMapping("{id}/departamentos")
 		public CollectionModel<DepartamentoListaModel> departamentos(@PathVariable Long id) {
-			AcuartelamientoConId acuartelamiento = (AcuartelamientoConId) repositorio.findById(id)
-					.orElseThrow(() -> new RegisterNotFoundException(id, "Acuartelamiento"));
+			AcuartelamientoConId acuartelamiento = repositorio.findById(id)
+					.orElseThrow(() -> new RegisterNotFoundException(id, "acuartelamiento"));
 		    return depListaAssembler.toCollection(acuartelamiento.getDepartamentos());
 		}
 		
@@ -76,6 +77,15 @@ public class AcuartelamientoController {
 		    		.orElseThrow(() -> new RegisterNotFoundException(abreviatura, "Acuartelamiento"));
 		    return assembler.toModel(Acuartelamiento);
 		}
+		
+//		@GetMapping
+//		public CollectionModel<DepartamentoListaAssembler> dptosDeAcuartelamiento(@RequestParam(value = "acuartelamiento_id") int id) {
+////			CategoriaConId categoria = repositorio.findByGrupo(grupo)
+////					.orElseThrow(() -> new RegisterNotFoundException(id, "categoria"));
+////		    return cat.toCollection(categoria.getMateriales());
+////	
+//			return listaAssembler.toCollection(repositorio.findById());
+//		}
 		
 		
 		@GetMapping
@@ -102,8 +112,6 @@ public class AcuartelamientoController {
 				acu.setResponsableEmpleo(model.getResponsableEmpleo());
 				acu.setResponsableNombre(model.getResponsableNombre());
 				acu.setTelefono(model.getTelefono());
-				acu.setLongitud(model.getLongitud());
-				acu.setLatitud(model.getLatitud());
 				
 			return repositorio.save(acu);
 			})

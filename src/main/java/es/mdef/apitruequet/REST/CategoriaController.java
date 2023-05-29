@@ -55,7 +55,7 @@ public class CategoriaController {
 			return assembler.toModel(categoria);
 		}
 		
-		//
+		
 		@GetMapping("{id}/materiales")
 		public CollectionModel<MaterialListaModel> materialesDeCategoria(@PathVariable Long id) {
 			CategoriaConId categoria = repositorio.findById(id)

@@ -34,10 +34,9 @@ public class AcuartelamientoAssembler implements RepresentationModelAssembler<Ac
 		model.setResponsableNombre(entity.getResponsableNombre());
 		model.setResponsableEmpleo(entity.getResponsableEmpleo());
 		model.setDireccion(entity.getDireccion());
-		model.setLongitud(entity.getLongitud());
-		model.setLatitud(entity.getLatitud());
-		int numMateriales = 0;
 		
+		int numMateriales = 0;
+		System.out.println("materiales" + numMateriales);
 		if (entity.getDepartamentos() != null) {
 			for (Departamento departamento : entity.getDepartamentos()) {
 		    numMateriales += departamento.getMaterialesOfertados().size() +  departamento.getMaterialesAdquiridos().size();
@@ -66,8 +65,6 @@ public class AcuartelamientoAssembler implements RepresentationModelAssembler<Ac
 		acuartelamiento.setResponsableNombre(model.getResponsableNombre());
 		acuartelamiento.setResponsableEmpleo(model.getResponsableEmpleo());
 		acuartelamiento.setDireccion(model.getDireccion());
-		acuartelamiento.setLongitud(model.getLongitud());
-		acuartelamiento.setLatitud(model.getLatitud());
 		
 		//las entidades ocn las que esta relacionada
 		return acuartelamiento;

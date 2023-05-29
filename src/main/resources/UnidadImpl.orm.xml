@@ -10,8 +10,6 @@
 			<basic name="abreviatura"/>
 			<basic name="telefono"/>
 			<basic name="direccion"/>		
-			<basic name="longitud"/>
-			<basic name="latitud"/>		
 			<basic name="responsableEmpleo"/>
 			<basic name="responsableNombre"/>
         </attributes>

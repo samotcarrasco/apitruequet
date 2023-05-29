@@ -171,9 +171,14 @@ public class DepartamentoController {
 		//metodo personalizado
 		@GetMapping("{id}/calcularBonificacion")
 		public BonificacionModel calcularBonificacion(@PathVariable long id) {
-			 int bonificacion = matRepositorio.calcularBonificacion(id); // Reemplaza 1 con el valor deseado para dptoOferta
-			  BonificacionModel bonificacionModel = new BonificacionModel();
-		      bonificacionModel.setBonificacion(bonificacion);
+			
+			//int bonificacion = 0;
+			//no es necesario inicializar, utilizamos COALESCE en la query
+			int bonificacion = matRepositorio.calcularBonificacion((int)id);
+			
+			
+			BonificacionModel bonificacionModel = new BonificacionModel();
+		    bonificacionModel.setBonificacion(bonificacion);
 
 		  return bonificacionModel;
 		}
