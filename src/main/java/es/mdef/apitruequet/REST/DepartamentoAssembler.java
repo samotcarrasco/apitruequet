@@ -50,7 +50,7 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 	
 	public DepartamentoConId toEntity(DepartamentoPostModel model) {
 		DepartamentoConId departamento = new DepartamentoConId();
-		departamento.setAbreviatura(model.getAbreviatura());
+		departamento.setAbreviatura(model.getAbreviatura()+"-"+model.getAcuartelamiento().getAbreviatura());
 		departamento.setAcuartelamiento(model.getAcuartelamiento());
 		departamento.setNombre(model.getNombre());
 		//inicialemnte se asignan 1000 milis a los departamentos

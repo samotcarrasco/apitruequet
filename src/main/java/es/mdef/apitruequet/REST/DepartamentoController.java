@@ -102,7 +102,7 @@ public class DepartamentoController {
 			DepartamentoConId departamento = repositorio.findById(id).map(dep -> {
 				
 				dep.setNombre(model.getNombre());
-				dep.setAbreviatura(model.getAbreviatura());
+				dep.setAbreviatura(model.getAbreviatura()+"-"+model.getAcuartelamiento().getAbreviatura());
 				dep.setAcuartelamiento(model.getAcuartelamiento());
 				dep.setEmail(model.getEmail());
 				dep.setResponsableEmpleo(model.getResponsableEmpleo());

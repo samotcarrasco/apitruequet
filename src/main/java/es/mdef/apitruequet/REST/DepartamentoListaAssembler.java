@@ -37,7 +37,10 @@ public class DepartamentoListaAssembler <T extends DepartamentoImpl> implements 
 		model.setLongitud(((DepartamentoConId) entity).getLongitud());
 		model.setLatitud(((DepartamentoConId) entity).getLatitud());
 		
-		
+		int numMateriales = entity.getMaterialesOfertados() != null ||  entity.getMaterialesAdquiridos() != null 
+				? entity.getMaterialesOfertados().size() + entity.getMaterialesAdquiridos().size()
+			    : 0;
+		model.setNumMateriales(numMateriales);
 				
 		model.add(linkTo(methodOn(AcuartelamientoController.class).one(((AcuartelamientoConId) entity.getAcuartelamiento()).getId())).withRel("acuartelamiento"));
 		model.add(linkTo(methodOn(DepartamentoController.class).materialesOfertados(((DepartamentoConId) entity).getId())).withRel("materialesOfertados"));
