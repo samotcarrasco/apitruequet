@@ -110,6 +110,7 @@ public class DepartamentoController {
 				dep.setTelefono(model.getTelefono());
 				dep.setLongitud(model.getLongitud());
 				dep.setLatitud(model.getLatitud());
+				dep.setDireccion(model.getDireccion());
 
 				
 			return repositorio.save(dep);
