@@ -4,6 +4,7 @@ import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
 import es.mde.acing.utils.CategoriaImpl.TipoGrupo;
+import es.mdef.apitruequet.entidades.CategoriaConId;
 
 
 @Relation(itemRelation="categoria")
@@ -12,9 +13,9 @@ public class CategoriaPostModel extends RepresentationModel<CategoriaPostModel>{
 
   private String categoria;
 	private String descripcion;
-	private TipoGrupo grupo;
 	private int minMilis;
 	private int maxMilis;
+	private CategoriaConId categoriaPadre;
 
 	public String getCategoria() {
 		return categoria;
@@ -25,21 +26,16 @@ public class CategoriaPostModel extends RepresentationModel<CategoriaPostModel>{
 		return descripcion;
 	}
 
-
-
-	public TipoGrupo getGrupo() {
-		return grupo;
-	}
-
-
 	public int getMinMilis() {
 		return minMilis;
 	}
 
-
-
 	public int getMaxMilis() {
 		return maxMilis;
+	}
+	
+	public CategoriaConId getCategoriaPadre() {
+		return categoriaPadre;
 	}
 	
 	
@@ -47,7 +43,5 @@ public class CategoriaPostModel extends RepresentationModel<CategoriaPostModel>{
 	public String toString() {
 		return "Categoria MODELO POST [" + getCategoria() + "]";
 	}
-	
-	
 	
 }

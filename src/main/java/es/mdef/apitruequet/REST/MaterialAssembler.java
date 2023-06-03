@@ -39,7 +39,7 @@ public class MaterialAssembler implements RepresentationModelAssembler<MaterialC
 		//por compodidad para el front, estos tres los devolvemos como String
 		model.setCategoriaN(entity.getCategoria().getCategoria());
 		model.setDptoOfertaN(((DepartamentoConId) entity.getDeptoOferta()).getAbreviatura());
-		model.setGrupoN(entity.getCategoria().getGrupo().toString());
+		model.setGrupoN(entity.getCategoria().getCategoriaPadre().getCategoria());
 		
 		model.setFechaEntregaFisica(entity.getFechaEngregaFisica());
 		

@@ -35,7 +35,7 @@ public class MaterialListaAssembler<T extends Material>  implements Representati
 		//por compodidad para el front, estos tres los devolvemoscomo String
 		model.setCategoriaN(entity.getCategoria().getCategoria());
 		model.setDptoOfertaN(((DepartamentoConId) entity.getDeptoOferta()).getAbreviatura());
-		model.setGrupoN(entity.getCategoria().getGrupo().toString());
+		model.setGrupoN(entity.getCategoria().getCategoriaPadre().getCategoria());
 		model.setFechaEntregaFisica(((MaterialConId) entity).getFechaEngregaFisica());
 
 		

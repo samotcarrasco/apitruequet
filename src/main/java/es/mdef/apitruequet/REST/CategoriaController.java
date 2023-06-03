@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import es.mdef.apitruequet.ApiTruequetApp;
 import es.mdef.apitruequet.entidades.CategoriaConId;
 import es.mde.acing.utils.CategoriaImpl.TipoGrupo;
+import es.mde.acing.utils.UnidadImpl.TipoEmpleo;
 import es.mdef.apitruequet.repositorios.CategoriaRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
 import jakarta.validation.Valid;
@@ -64,14 +65,37 @@ public class CategoriaController {
 		}
 		
 		@GetMapping("/categoriasdegrupo")
-		public CollectionModel<CategoriaListaModel> categoriasDeGrupo(@RequestParam(value = "grupo") TipoGrupo grupo) {
+		public CollectionModel<CategoriaListaModel> categoriasDeGrupo(@RequestParam(value = "grupo") String grupo) {
 //			CategoriaConId categoria = repositorio.findByGrupo(grupo)
 //					.orElseThrow(() -> new RegisterNotFoundException(id, "categoria"));
 //		    return cat.toCollection(categoria.getMateriales());
 //			
-			return listaAssembler.toCollection(repositorio.findByGrupo(grupo));
+			return null; // listaAssembler.toCollection(repositorio.findByGrupo(grupo));
 		}
 		
+		@GetMapping("/grupos")
+		 public String[] grupos() {
+		     return repositorio.grupos();
+		  }
+		
+		@GetMapping("/categoriasNormales")
+		public CollectionModel<CategoriaListaModel> categoriasNormales() {
+		    List<CategoriaConId> categorias = repositorio.findAll().stream()
+		            .filter(categoria -> categoria.getCategoriaPadre() != null)
+		            .collect(Collectors.toList());
+
+		    return listaAssembler.toCollection(categorias);
+		}
+		
+		@GetMapping("/categoriasPrincipales")
+		public CollectionModel<CategoriaListaModel>  categoriasPrincipales() {
+		    List<CategoriaConId> categorias = repositorio.findAll().stream()
+		            .filter(categoria -> categoria.getCategoriaPadre() == null)
+		            .collect(Collectors.toList());
+
+		    return listaAssembler.toCollection(categorias);
+		}
+
 
 		@GetMapping
 		public CollectionModel<CategoriaListaModel> all() {
@@ -92,7 +116,7 @@ public class CategoriaController {
 			CategoriaConId categoria = repositorio.findById(id).map(cat -> {
 				cat.setCategoria(model.getCategoria());
 				cat.setDescripcion(model.getDescripcion());
-				cat.setGrupo(model.getGrupo());
+				cat.setCategoriaPadre(model.getCategoriaPadre());
 				cat.setMinMilis(model.getMinMilis());
 				cat.setMaxMilis(model.getMaxMilis());
 				

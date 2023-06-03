@@ -6,12 +6,15 @@
 	
      <mapped-superclass class="es.mde.acing.utils.CategoriaImpl" access="FIELD">
        <attributes>
-            <basic name="categoria" />
-            <basic name="descripcion"/>
-            <basic name="grupo" />
-            <basic name="minMilis" />
-            <basic name="maxMilis" />
-      		<one-to-many name="materiales" mapped-by="categoria" target-entity="es.mdef.apitruequet.entidades.MaterialConId"/>
-        </attributes>
+            <basic name="categoria" optional="false"/>
+            <basic name="descripcion" optional="true" />
+            <basic name="minMilis" optional="true"  />
+            <basic name="maxMilis"  optional="true" />
+      		<many-to-one name="categoriaPadre" fetch="LAZY"  optional="true" target-entity="es.mdef.apitruequet.entidades.CategoriaConId">
+                <join-column name="categoria_padre_id" referenced-column-name="ID"/>
+            </many-to-one>
+      	    <one-to-many name="categoriasHijas" mapped-by="categoria" target-entity="es.mdef.apitruequet.entidades.CategoriaConId"/>
+     		<one-to-many name="materiales" mapped-by="categoria" target-entity="es.mdef.apitruequet.entidades.MaterialConId"/>
+         </attributes>
     </mapped-superclass>
 </entity-mappings>

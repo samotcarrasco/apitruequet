@@ -13,10 +13,10 @@ public class CategoriaListaModel extends RepresentationModel<CategoriaListaModel
 	private Long id;
 	private String categoria;
 	private String descripcion;
-	private TipoGrupo grupo;
 	private int minMilis;
 	private int maxMilis;
 	private int numMateriales;
+	private String grupo;
 
 	public String getCategoria() {
 		return categoria;
@@ -34,13 +34,6 @@ public class CategoriaListaModel extends RepresentationModel<CategoriaListaModel
 		this.descripcion = descripcion;
 	}
 
-	public TipoGrupo getGrupo() {
-		return grupo;
-	}
-
-	public void setGrupo(TipoGrupo grupo) {
-		this.grupo = grupo;
-	}
 
 	public int getMinMilis() {
 		return minMilis;
@@ -75,6 +68,14 @@ public class CategoriaListaModel extends RepresentationModel<CategoriaListaModel
 		this.numMateriales = numMateriales;
 	}
 	
+
+	public String getGrupo() {
+		return grupo;
+	}
+
+	public void setGrupo(String grupo) {
+		this.grupo = grupo;
+	}
 
 	@Override
 	public String toString() {

@@ -21,18 +21,21 @@ public class CategoriaListaAssembler  implements RepresentationModelAssembler<Ca
 		CategoriaListaModel model = new CategoriaListaModel();
 		model.setCategoria(entity.getCategoria());
 		model.setDescripcion(entity.getDescripcion());
-		model.setGrupo(entity.getGrupo());
+		//model.setGrupo(entity.getGrupo());
 		model.setId(entity.getId());
 		model.setMinMilis(entity.getMinMilis());
 		model.setMaxMilis(entity.getMaxMilis());
-		
+		if (entity.getCategoriaPadre() != null) {
+			model.setGrupo(entity.getCategoriaPadre().getCategoria());
+		}		
 		//devolvemos el numero de materiales que tiene la categoria
 		int numMateriales = entity.getMateriales() != null ? entity.getMateriales().size() : 0;
 		model.setNumMateriales(numMateriales);
 				
-		model.add(
-				linkTo(methodOn(CategoriaController.class).one(entity.getId())).withSelfRel()
-				);
+		model.add(linkTo(methodOn(CategoriaController.class).one(entity.getId())).withSelfRel());
+		if (entity.getCategoriaPadre() != null) {
+			model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity.getCategoriaPadre()).getId())).withRel("categoriaPadre"));
+			}
 		return model;
 	}
 	
