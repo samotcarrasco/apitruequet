@@ -33,7 +33,7 @@ dependencies {
 	
 	//librería externa alojada en github
 	//también se puede poner el commit en lugar de la release
-	implementation 'com.github.samotcarrasco:backend-truequet-lib:f2a3093'
+	implementation 'com.github.samotcarrasco:backend-truequet-lib:V2.0'
 	
 	
 }
