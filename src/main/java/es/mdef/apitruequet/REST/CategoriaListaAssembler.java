@@ -10,19 +10,20 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
+import es.mde.acing.utils.Categoria;
 import es.mdef.apitruequet.entidades.CategoriaConId;
 
 
 @Component
-public class CategoriaListaAssembler  implements RepresentationModelAssembler<CategoriaConId, CategoriaListaModel>{
+public class CategoriaListaAssembler <T extends Categoria> implements RepresentationModelAssembler<T, CategoriaListaModel>{
 
 	@Override
-	public CategoriaListaModel toModel(CategoriaConId entity) {
+	public CategoriaListaModel toModel(T entity) {
 		CategoriaListaModel model = new CategoriaListaModel();
 		model.setCategoria(entity.getCategoria());
 		model.setDescripcion(entity.getDescripcion());
 		//model.setGrupo(entity.getGrupo());
-		model.setId(entity.getId());
+		model.setId(((CategoriaConId) entity).getId());
 		model.setMinMilis(entity.getMinMilis());
 		model.setMaxMilis(entity.getMaxMilis());
 		if (entity.getCategoriaPadre() != null) {
@@ -32,14 +33,14 @@ public class CategoriaListaAssembler  implements RepresentationModelAssembler<Ca
 		int numMateriales = entity.getMateriales() != null ? entity.getMateriales().size() : 0;
 		model.setNumMateriales(numMateriales);
 				
-		model.add(linkTo(methodOn(CategoriaController.class).one(entity.getId())).withSelfRel());
+		model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity).getId())).withSelfRel());
 		if (entity.getCategoriaPadre() != null) {
 			model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity.getCategoriaPadre()).getId())).withRel("categoriaPadre"));
 			}
 		return model;
 	}
 	
-	public CollectionModel<CategoriaListaModel> toCollection(List<CategoriaConId> lista) {
+	public CollectionModel<CategoriaListaModel> toCollection(List<T> lista) {
 		CollectionModel<CategoriaListaModel> collection = CollectionModel.of(
 				lista.stream().map(this::toModel).collect(Collectors.toList())
 				);

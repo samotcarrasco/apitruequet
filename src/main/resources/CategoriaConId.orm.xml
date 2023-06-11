@@ -11,12 +11,6 @@
             <id name="id">
                 <generated-value strategy="IDENTITY"/>
             </id>
-        <!--     <one-to-many name="materiales" mapped-by="categoria" target-entity="es.mdef.apitruequet.entidades.MaterialConId"/> -->
         </attributes>
-
-
-      		     
-      		     
     </entity>
-    
 </entity-mappings>

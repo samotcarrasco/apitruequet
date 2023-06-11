@@ -90,22 +90,28 @@ public class MaterialController {
 			if (model.getTipoMaterial() == TipoMaterial.Inventariable) {
 				Inventariable inv = new Inventariable();
 				repositorio.actualizarInventariable(model.getNumeroSerie(), model.getNoc(), id);
-				// mat = inv;
+				inv.setNumeroSerie(model.getNumeroSerie());
+				inv.setNoc(model.getNoc());
+				//mat = inv;
 			} else if (model.getTipoMaterial() == TipoMaterial.noInventariable) {
 				NoInventariable noInv = new NoInventariable();
 				repositorio.actualizarNoInventariable(model.getBonificacion(), id);
-				// mat = noInv;
+				noInv.setBonificacion(model.getBonificacion());
+				//mat = noInv;
 			}
 
 			mat.setNombre(model.getNombre());
 			mat.setDescripcion(model.getDescripcion());
 			mat.setCantidad(model.getCantidad());
 			mat.setDimensiones(model.getDimensiones());
+			mat.setPeso(model.getPeso());
 			mat.setFechaAdquisicion(model.getFechaAdquisicion());
 			mat.setFechaOferta(model.getFechaOferta());
 			mat.setCantidad(model.getCantidad());
 			mat.setMilis(model.getMilis());
 			mat.setEstado(model.getEstado());
+			mat.setImagen(model.getImagen());
+			mat.setImgReducida(model.getImgReducida());
 
 			// las entidades con las que esta relacionada
 			mat.setDeptoOferta(model.getDptoOferta());

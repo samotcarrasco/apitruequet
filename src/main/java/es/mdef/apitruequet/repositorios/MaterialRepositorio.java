@@ -1,7 +1,5 @@
 package es.mdef.apitruequet.repositorios;
 
-
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -46,8 +44,5 @@ public interface MaterialRepositorio extends JpaRepository<MaterialConId, Long> 
 	    @Param("bonificacion") int bonificacion,
 	    @Param("id") Long id
 	);
-	
-	
 
-	
 }	

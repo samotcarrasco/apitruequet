@@ -1,5 +1,8 @@
 package es.mdef.apitruequet.entidades;
 
+import java.util.List;
+
+import es.mde.acing.utils.Categoria;
 
 public class CategoriaConId  extends es.mde.acing.utils.CategoriaImpl {
 	
@@ -14,6 +17,11 @@ public class CategoriaConId  extends es.mde.acing.utils.CategoriaImpl {
 		this.id = id;
 	}
 	
+	@Override
+	public List<Categoria> getCategoriasHijas(){
+		
+		return super.getCategoriasHijas();
+	}
 	@Override
 	public String toString() {
 		return "Categoria [id=" + getId() + ", nombre" + getCategoria() + "]";

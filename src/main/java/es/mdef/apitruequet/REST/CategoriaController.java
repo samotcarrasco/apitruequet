@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import es.mdef.apitruequet.ApiTruequetApp;
 import es.mdef.apitruequet.entidades.CategoriaConId;
+import es.mde.acing.utils.Categoria;
 import es.mde.acing.utils.CategoriaImpl.TipoGrupo;
 import es.mde.acing.utils.UnidadImpl.TipoEmpleo;
 import es.mdef.apitruequet.repositorios.CategoriaRepositorio;
@@ -64,13 +65,25 @@ public class CategoriaController {
 		    return matListaAssembler.toCollection(categoria.getMateriales());
 		}
 		
-		@GetMapping("/categoriasdegrupo")
-		public CollectionModel<CategoriaListaModel> categoriasDeGrupo(@RequestParam(value = "grupo") String grupo) {
-//			CategoriaConId categoria = repositorio.findByGrupo(grupo)
-//					.orElseThrow(() -> new RegisterNotFoundException(id, "categoria"));
-//		    return cat.toCollection(categoria.getMateriales());
-//			
-			return null; // listaAssembler.toCollection(repositorio.findByGrupo(grupo));
+//		@GetMapping("/categoriasdegrupo")
+//		public CollectionModel<CategoriaListaModel> categoriasDeGrupo(@RequestParam(value = "categoria") String categoria) {
+//		    Optional<CategoriaConId> categoriaPadre = repositorio.findByCategoria(categoria);
+//
+//		    if (categoriaPadre.isPresent()) {
+//		        CategoriaConId cat = categoriaPadre.get();
+//		        List<Categoria> categoriasHijas = cat.getCategoriasHijas();
+//		        return listaAssembler.toCollection(categoriasHijas);
+//		    } else {
+//		        return null;
+//		    }
+//		}
+//		
+		@GetMapping("/buscarcategoria")
+		public CategoriaModel categoriaPorNombre(@RequestParam(value = "categoria") String categoria) {
+		    CategoriaConId categoriaBuscada = repositorio.findByCategoria(categoria)
+		            .orElseThrow(() -> new RegisterNotFoundException(categoria, "categoria"));
+
+		    return  assembler.toModel(categoriaBuscada);
 		}
 		
 		@GetMapping("/grupos")
@@ -127,9 +140,6 @@ public class CategoriaController {
 			return assembler.toModel(categoria);
 	}
 		
-		
-
-		
 		@DeleteMapping("{id}")
 		public void delete(@PathVariable Long id) {
 		    log.info("Borrado Categoria " + id);
@@ -139,5 +149,5 @@ public class CategoriaController {
 				})
 				.orElseThrow(() -> new RegisterNotFoundException(id, "categoria"));
 		}
-	
+
 }
