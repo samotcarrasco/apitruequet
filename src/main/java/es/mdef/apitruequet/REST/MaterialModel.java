@@ -12,20 +12,17 @@ import es.mde.acing.utils.MaterialImpl.TipoMaterial;
 @Relation(itemRelation ="material")
 public class MaterialModel extends RepresentationModel<MaterialModel>{
 	
-	
 	private Long id;
 	private String nombre;
-	//estos 4 se rellenan en el Assemblers
 	private String dptoOfertaN;
 	private String dptoAdquisicionN;
 	private String categoriaN;
 	private String grupoN;
-	
-	
 	private String descripcion;
 	private LocalDate fechaAdquisicion;
 	private LocalDate fechaOferta;
 	private String imagen;
+	private String imgReducida;
 	private EstadoMaterial estado;
 	private int milis;
 	private int cantidad;
@@ -36,13 +33,15 @@ public class MaterialModel extends RepresentationModel<MaterialModel>{
 	private String numeroSerie;
 	private int bonificacion;
 	private int numMateriales;
-	
-	// añadirmos fecha entrega
 	private LocalDate fechaEntregaFisica;
+ 
 
-	    	 
-    	 
-
+	public String getImgReducida() {
+		return imgReducida;
+	}
+	public void setImgReducida(String imgReducida) {
+		this.imgReducida = imgReducida;
+	}
 	public int getNumMateriales() {
 		return numMateriales;
 	}

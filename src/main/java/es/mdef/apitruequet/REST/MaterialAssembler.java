@@ -35,6 +35,7 @@ public class MaterialAssembler implements RepresentationModelAssembler<MaterialC
 		model.setDimensiones(entity.getDimensiones());
 		model.setPeso(entity.getPeso());
 		model.setImagen(entity.getImagen());
+		model.setImgReducida(entity.getImgReducida());
 				
 		//por compodidad para el front, estos tres los devolvemos como String
 		model.setCategoriaN(entity.getCategoria().getCategoria());
