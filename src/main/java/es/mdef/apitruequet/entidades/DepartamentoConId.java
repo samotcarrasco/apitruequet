@@ -19,4 +19,9 @@ public class DepartamentoConId extends DepartamentoImpl implements Departamento{
 	public void aumentarCredito(int cantidad) {
 	    super.setCredito(super.getCredito() + cantidad);
 	}
+
+	@Override
+	public String toString() {
+		return "DepartamentoConId [id=" + id + super.toString();
+	}
 }

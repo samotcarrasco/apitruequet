@@ -13,40 +13,36 @@ import org.springframework.stereotype.Component;
 import es.mde.acing.utils.Categoria;
 import es.mdef.apitruequet.entidades.CategoriaConId;
 
-
 @Component
-public class CategoriaListaAssembler <T extends Categoria> implements RepresentationModelAssembler<T, CategoriaListaModel>{
+public class CategoriaListaAssembler<T extends Categoria>
+		implements RepresentationModelAssembler<T, CategoriaListaModel> {
 
 	@Override
 	public CategoriaListaModel toModel(T entity) {
 		CategoriaListaModel model = new CategoriaListaModel();
 		model.setCategoria(entity.getCategoria());
 		model.setDescripcion(entity.getDescripcion());
-		//model.setGrupo(entity.getGrupo());
 		model.setId(((CategoriaConId) entity).getId());
 		model.setMinMilis(entity.getMinMilis());
 		model.setMaxMilis(entity.getMaxMilis());
 		if (entity.getCategoriaPadre() != null) {
 			model.setGrupo(entity.getCategoriaPadre().getCategoria());
-		}		
-		//devolvemos el numero de materiales que tiene la categoria
+		}
 		int numMateriales = entity.getMateriales() != null ? entity.getMateriales().size() : 0;
 		model.setNumMateriales(numMateriales);
-				
+
 		model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity).getId())).withSelfRel());
 		if (entity.getCategoriaPadre() != null) {
-			model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity.getCategoriaPadre()).getId())).withRel("categoriaPadre"));
-			}
+			model.add(linkTo(
+					methodOn(CategoriaController.class).one(((CategoriaConId) entity.getCategoriaPadre()).getId()))
+					.withRel("categoriaPadre"));
+		}
 		return model;
 	}
-	
+
 	public CollectionModel<CategoriaListaModel> toCollection(List<T> lista) {
-		CollectionModel<CategoriaListaModel> collection = CollectionModel.of(
-				lista.stream().map(this::toModel).collect(Collectors.toList())
-				);
-//		collection.add(
-//				linkTo(methodOn(CategoriaController.class).all()).withRel("categorias")
-//				);		
+		CollectionModel<CategoriaListaModel> collection = CollectionModel
+				.of(lista.stream().map(this::toModel).collect(Collectors.toList()));
 		return collection;
 	}
 }

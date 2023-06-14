@@ -10,37 +10,29 @@ import es.mdef.apitruequet.entidades.DepartamentoConId;
 import es.mde.acing.utils.MaterialImpl.EstadoMaterial;
 import es.mde.acing.utils.MaterialImpl.TipoMaterial;
 
-
 @Relation(itemRelation = "material")
-public class MaterialPostModel extends RepresentationModel<MaterialPostModel>{
-	
-	
+public class MaterialPostModel extends RepresentationModel<MaterialPostModel> {
+
 	private Long id;
 	private String nombre;
-
 	private DepartamentoConId dptoOferta;
-	//dejamos el dpto adquisicion por compatibilidad con put
 	private DepartamentoConId dptoAdquisicion;
 	private CategoriaConId categoria;
-	
 	private String descripcion;
 	private LocalDate fechaAdquisicion;
 	private LocalDate fechaOferta;
 	private String imagen;
-	//dejamos el estado por compatibilidad con put
 	private EstadoMaterial estado;
 	private int milis;
 	private int cantidad;
 	private String dimensiones;
 	private String peso;
-
 	private TipoMaterial tipoMaterial;
 	private String noc;
 	private String numeroSerie;
 	private int bonificacion;
 	private String imgReducida;
-     	 
-    
+
 	public Long getId() {
 		return id;
 	}
@@ -100,7 +92,7 @@ public class MaterialPostModel extends RepresentationModel<MaterialPostModel>{
 	public TipoMaterial getTipoMaterial() {
 		return tipoMaterial;
 	}
-	
+
 	public String getNoc() {
 		return noc;
 	}
@@ -113,16 +105,13 @@ public class MaterialPostModel extends RepresentationModel<MaterialPostModel>{
 		return bonificacion;
 	}
 
-	
-	
 	public String getImgReducida() {
 		return imgReducida;
 	}
 
 	@Override
 	public String toString() {
-		return "MATERIAL [Nombre=" + getNombre() +"]";
+		return "MATERIAL [Nombre=" + getNombre() + "]";
 	}
-	
-	
+
 }

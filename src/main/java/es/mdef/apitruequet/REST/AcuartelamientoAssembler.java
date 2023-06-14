@@ -17,45 +17,39 @@ import es.mde.acing.utils.UnidadImpl;
 import es.mdef.apitruequet.entidades.AcuartelamientoConId;
 import es.mdef.apitruequet.entidades.DepartamentoConId;
 
-
-
 @Component
-public class AcuartelamientoAssembler implements RepresentationModelAssembler<AcuartelamientoConId, AcuartelamientoModel>{
+public class AcuartelamientoAssembler
+		implements RepresentationModelAssembler<AcuartelamientoConId, AcuartelamientoModel> {
 
-	
 	@Override
 	public AcuartelamientoModel toModel(AcuartelamientoConId entity) {
 		AcuartelamientoModel model = new AcuartelamientoModel();
-		model.setId( entity.getId());
-		model.setAbreviatura( entity.getAbreviatura());
-		model.setNombre( entity.getNombre());
+		model.setId(entity.getId());
+		model.setAbreviatura(entity.getAbreviatura());
+		model.setNombre(entity.getNombre());
 		model.setEmail(entity.getEmail());
 		model.setTelefono(entity.getTelefono());
 		model.setResponsableNombre(entity.getResponsableNombre());
 		model.setResponsableEmpleo(entity.getResponsableEmpleo());
 		model.setDireccion(entity.getDireccion());
-		
+
 		int numMateriales = 0;
-		System.out.println("materiales" + numMateriales);
 		if (entity.getDepartamentos() != null) {
 			for (Departamento departamento : entity.getDepartamentos()) {
-		    numMateriales += departamento.getMaterialesOfertados().size() +  departamento.getMaterialesAdquiridos().size();
+				numMateriales += departamento.getMaterialesOfertados().size()
+						+ departamento.getMaterialesAdquiridos().size();
 			}
 		}
-		
-		int numDptos = entity.getDepartamentos() != null  ? entity.getDepartamentos().size() : 0;
-
+		int numDptos = entity.getDepartamentos() != null ? entity.getDepartamentos().size() : 0;
 		model.setNumDepartamentos(numDptos);
 		model.setNumMateriales(numMateriales);
 		model.add(linkTo(methodOn(AcuartelamientoController.class).one(entity.getId())).withSelfRel());
-		model.add(linkTo(methodOn(AcuartelamientoController.class).departamentos(entity.getId())).withRel("departamentos"));
-				
+		model.add(linkTo(methodOn(AcuartelamientoController.class).departamentos(entity.getId()))
+				.withRel("departamentos"));
+
 		return model;
 	}
-	
-	
-	
-	
+
 	public AcuartelamientoConId toEntity(AcuartelamientoPostModel model) {
 		AcuartelamientoConId acuartelamiento = new AcuartelamientoConId();
 		acuartelamiento.setAbreviatura(model.getAbreviatura());
@@ -65,10 +59,6 @@ public class AcuartelamientoAssembler implements RepresentationModelAssembler<Ac
 		acuartelamiento.setResponsableNombre(model.getResponsableNombre());
 		acuartelamiento.setResponsableEmpleo(model.getResponsableEmpleo());
 		acuartelamiento.setDireccion(model.getDireccion());
-		
-		//las entidades ocn las que esta relacionada
 		return acuartelamiento;
 	}
-	
-
 }

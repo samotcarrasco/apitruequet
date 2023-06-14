@@ -1,23 +1,12 @@
 package es.mdef.apitruequet.REST;
 
-
-
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
-
-import es.mde.acing.utils.AcuartelamientoImpl;
 import es.mde.acing.utils.UnidadImpl.TipoEmpleo;
-import es.mdef.apitruequet.entidades.AcuartelamientoConId;
 
-
-
-//@Relation(itemRelation="acuartelamiento")
-//usamos el mismo modelo para 1 y para listas
-@Relation(collectionRelation="acuartelamientos")
-public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>{
-	
+@Relation(collectionRelation = "acuartelamientos")
+public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel> {
 	private Long id;
-	
 	private String nombre;
 	private String abreviatura;
 	private String email;
@@ -27,8 +16,7 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 	private String direccion;
 	private int numMateriales;
 	private int numDepartamentos;
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -41,7 +29,6 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 		return abreviatura;
 	}
 
-
 	public TipoEmpleo getResponsableEmpleo() {
 		return responsableEmpleo;
 	}
@@ -53,11 +40,11 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 	public String getTelefono() {
 		return telefono;
 	}
-	
+
 	public int getNumMateriales() {
 		return numMateriales;
 	}
-	
+
 	public void setNumMateriales(int numMateriales) {
 		this.numMateriales = numMateriales;
 	}
@@ -74,7 +61,6 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 		this.abreviatura = abreviatura;
 	}
 
-
 	public void setResponsableEmpleo(TipoEmpleo responsableEmpleo) {
 		this.responsableEmpleo = responsableEmpleo;
 	}
@@ -87,7 +73,6 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 		this.telefono = telefono;
 	}
 
-	
 	public String getEmail() {
 		return email;
 	}
@@ -104,11 +89,6 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 		this.direccion = direccion;
 	}
 
-	@Override
-	public String toString() {
-		return "DPTO MODELO [id=" + getId() + ", nombre" + getNombre() + "]";
-	}
-
 	public int getNumDepartamentos() {
 		return numDepartamentos;
 	}
@@ -116,6 +96,10 @@ public class AcuartelamientoModel extends RepresentationModel<DepartamentoModel>
 	public void setNumDepartamentos(int numDepartamentos) {
 		this.numDepartamentos = numDepartamentos;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "DPTO MODELO [id=" + getId() + ", nombre" + getNombre() + "]";
+	}
+
 }

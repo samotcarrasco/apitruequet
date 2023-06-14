@@ -12,7 +12,6 @@ import jakarta.transaction.Transactional;
 
 public interface MaterialRepositorio extends JpaRepository<MaterialConId, Long> {
 	
-	
     //método personalizado. al ofertar NoInventariables, se bonificará con un 10% del total de milis no inventariables ofertaos
 	//utilizamos calesce para que si no hay valores, devuelva 0
 	@Query(value="SELECT COALESCE(round(sum(milis)*0.1), 0) FROM public.materiales "

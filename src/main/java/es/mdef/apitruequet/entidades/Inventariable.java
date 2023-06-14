@@ -1,5 +1,5 @@
 package es.mdef.apitruequet.entidades;
-
+import es.mde.acing.utils.MaterialImpl.TipoMaterial;
 
 public class Inventariable extends MaterialConId implements es.mde.acing.utils.esInventariable {
 	
@@ -29,8 +29,9 @@ public class Inventariable extends MaterialConId implements es.mde.acing.utils.e
 
 	@Override
 	public String toString() {
-		return super.toString() + "MATERIAL INVENTARIABLE [TLF" + super.getNombre() +" " +  getNoc() + "]";
+		return "Inventariable [noc=" + noc + ", numeroSerie=" + numeroSerie + "]";
 	}
 
+	
 }
 	

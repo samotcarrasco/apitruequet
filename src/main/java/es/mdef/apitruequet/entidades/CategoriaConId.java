@@ -6,7 +6,6 @@ import es.mde.acing.utils.Categoria;
 
 public class CategoriaConId  extends es.mde.acing.utils.CategoriaImpl {
 	
-
 	private Long id;
 	
 	public Long getId() {

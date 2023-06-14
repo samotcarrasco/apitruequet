@@ -110,8 +110,6 @@ public class MaterialModel extends RepresentationModel<MaterialModel>{
 	public void setCategoriaN(String categoriaN) {
 		this.categoriaN = categoriaN;
 	}
-
-
 	
 	public LocalDate getFechaAdquisicion() {
 		return fechaAdquisicion;
@@ -132,7 +130,6 @@ public class MaterialModel extends RepresentationModel<MaterialModel>{
 		this.imagen = imagen;
 	}
 
-
 	public String getDimensiones() {
 		return dimensiones;
 	}
@@ -145,9 +142,7 @@ public class MaterialModel extends RepresentationModel<MaterialModel>{
 	public void setPeso(String peso) {
 		this.peso = peso;
 	}
-	
-	
-	
+		
 	public String getNoc() {
 		return noc;
 	}
@@ -167,7 +162,6 @@ public class MaterialModel extends RepresentationModel<MaterialModel>{
 		this.bonificacion = bonificacion;
 	}
 	
-
 	public TipoMaterial getTipoMaterial() {
 		return tipoMaterial;
 	}

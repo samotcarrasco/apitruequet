@@ -1,9 +1,5 @@
 package es.mdef.apitruequet.REST;
 
-import java.time.LocalDate;
-import java.util.Collections;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -61,13 +57,6 @@ public class MaterialController {
 	public CollectionModel<MaterialListaModel> all() {
 		return listaAssembler.toCollection(repositorio.findAll());
 	}
-	
-//	@GetMapping("algunos")
-//	public CollectionModel<MaterialListaModel> algunos() {
-//	    List<MaterialConId> materiales = repositorio.algunos();
-//	    Collections.shuffle(materiales); 
-//		return listaAssembler.toCollection(materiales);
-//	}
 
 	@PostMapping
 	public MaterialModel add(@Valid @RequestBody MaterialPostModel model) {
@@ -95,18 +84,15 @@ public class MaterialController {
 	public MaterialModel edit(@Valid @PathVariable Long id, @RequestBody MaterialPostModel model) {
 		MaterialConId material = repositorio.findById(id).map(mat -> {
 
-			// solamente actualizamos los datos necesarios de cada rol cuando corresponda
 			if (model.getTipoMaterial() == TipoMaterial.Inventariable) {
 				Inventariable inv = new Inventariable();
 				repositorio.actualizarInventariable(model.getNumeroSerie(), model.getNoc(), id);
 				inv.setNumeroSerie(model.getNumeroSerie());
 				inv.setNoc(model.getNoc());
-				//mat = inv;
 			} else if (model.getTipoMaterial() == TipoMaterial.noInventariable) {
 				NoInventariable noInv = new NoInventariable();
 				repositorio.actualizarNoInventariable(model.getBonificacion(), id);
 				noInv.setBonificacion(model.getBonificacion());
-				//mat = noInv;
 			}
 
 			mat.setNombre(model.getNombre());
@@ -122,7 +108,6 @@ public class MaterialController {
 			mat.setImagen(model.getImagen());
 			mat.setImgReducida(model.getImgReducida());
 
-			// las entidades con las que esta relacionada
 			mat.setDeptoOferta(model.getDptoOferta());
 			mat.setCategoria(model.getCategoria());
 			mat.setDptoAdquisicion(model.getDptoAdquisicion());
@@ -159,7 +144,7 @@ public class MaterialController {
 				NoInventariable noinv = (NoInventariable) mat;
 				bonificacion = noinv.getBonificacion();
 				log.info("DISMINUYENDO CREDITO (BONIFICACION EN  ", bonificacion, "MILIS");
-				//si se borra el material, en caso de haber tenido bonificación, se borra
+				// si se borra el material, en caso de haber tenido bonificación, se borra
 				departamento.aumentarCredito(-bonificacion);
 			}
 

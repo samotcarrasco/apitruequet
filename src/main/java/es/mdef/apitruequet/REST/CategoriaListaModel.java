@@ -1,15 +1,11 @@
 package es.mdef.apitruequet.REST;
 
-
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
+@Relation(collectionRelation = "categorias")
+public class CategoriaListaModel extends RepresentationModel<CategoriaListaModel> {
 
-import es.mde.acing.utils.CategoriaImpl.TipoGrupo;
-
-@Relation(collectionRelation="categorias")
-public class CategoriaListaModel extends RepresentationModel<CategoriaListaModel>{
-	
 	private Long id;
 	private String categoria;
 	private String descripcion;
@@ -34,7 +30,6 @@ public class CategoriaListaModel extends RepresentationModel<CategoriaListaModel
 		this.descripcion = descripcion;
 	}
 
-
 	public int getMinMilis() {
 		return minMilis;
 	}
@@ -51,23 +46,21 @@ public class CategoriaListaModel extends RepresentationModel<CategoriaListaModel
 		this.maxMilis = maxMilis;
 	}
 
-
 	public Long getId() {
 		return id;
 	}
-	
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public int getNumMateriales() {
 		return numMateriales;
 	}
-	
+
 	public void setNumMateriales(int numMateriales) {
 		this.numMateriales = numMateriales;
 	}
-	
 
 	public String getGrupo() {
 		return grupo;
@@ -81,6 +74,5 @@ public class CategoriaListaModel extends RepresentationModel<CategoriaListaModel
 	public String toString() {
 		return "Categoria MODELO [id=" + getId() + ", nombre" + getCategoria() + "]";
 	}
-	
-	
+
 }

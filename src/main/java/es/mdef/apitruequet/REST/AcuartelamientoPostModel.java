@@ -1,18 +1,12 @@
 package es.mdef.apitruequet.REST;
 
-
-
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
-
-import es.mde.acing.utils.AcuartelamientoImpl;
 import es.mde.acing.utils.UnidadImpl.TipoEmpleo;
-import es.mdef.apitruequet.entidades.AcuartelamientoConId;
 
+@Relation(itemRelation = "departamento")
+public class AcuartelamientoPostModel extends RepresentationModel<CategoriaModel> {
 
-@Relation(itemRelation="departamento")
-public class AcuartelamientoPostModel extends RepresentationModel<CategoriaModel>{
-	
 	private String nombre;
 	private String abreviatura;
 	private String email;
@@ -31,7 +25,6 @@ public class AcuartelamientoPostModel extends RepresentationModel<CategoriaModel
 		return abreviatura;
 	}
 
-
 	public TipoEmpleo getResponsableEmpleo() {
 		return responsableEmpleo;
 	}
@@ -43,13 +36,11 @@ public class AcuartelamientoPostModel extends RepresentationModel<CategoriaModel
 	public String getTelefono() {
 		return telefono;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
 
-	
-	
 	public String getDireccion() {
 		return direccion;
 	}
@@ -66,6 +57,5 @@ public class AcuartelamientoPostModel extends RepresentationModel<CategoriaModel
 	public String toString() {
 		return "Acuartelamentio POST MODEL nombre" + getNombre() + "]";
 	}
-	
-	
+
 }

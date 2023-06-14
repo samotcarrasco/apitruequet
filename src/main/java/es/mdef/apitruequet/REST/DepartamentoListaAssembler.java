@@ -10,23 +10,20 @@ import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.server.RepresentationModelAssembler;
 import org.springframework.stereotype.Component;
 
-import es.mde.acing.utils.Departamento;
 import es.mde.acing.utils.DepartamentoImpl;
 import es.mdef.apitruequet.entidades.AcuartelamientoConId;
 import es.mdef.apitruequet.entidades.DepartamentoConId;
 
-
 @Component
-public class DepartamentoListaAssembler <T extends DepartamentoImpl> implements RepresentationModelAssembler<T, DepartamentoListaModel>{
+public class DepartamentoListaAssembler<T extends DepartamentoImpl>
+		implements RepresentationModelAssembler<T, DepartamentoListaModel> {
 
-	
 	@Override
 	public DepartamentoListaModel toModel(T entity) {
 		DepartamentoListaModel model = new DepartamentoListaModel();
 		model.setId(((DepartamentoConId) entity).getId());
 		model.setAbreviatura(((DepartamentoConId) entity).getAbreviatura());
 		model.setNombre(((DepartamentoConId) entity).getNombre());
-		//model.setAcuartelamiento((AcuartelamientoConId) entity.getAcuartelamiento());
 		model.setAcuartelamientoN(((AcuartelamientoConId) entity.getAcuartelamiento()).getAbreviatura());
 		model.setCredito(entity.getCredito());
 		model.setEmail(((DepartamentoConId) entity).getEmail());
@@ -36,25 +33,27 @@ public class DepartamentoListaAssembler <T extends DepartamentoImpl> implements 
 		model.setDireccion(((DepartamentoConId) entity).getDireccion());
 		model.setLongitud(((DepartamentoConId) entity).getLongitud());
 		model.setLatitud(((DepartamentoConId) entity).getLatitud());
-		
-		int numMateriales = entity.getMaterialesOfertados() != null ||  entity.getMaterialesAdquiridos() != null 
+
+		int numMateriales = entity.getMaterialesOfertados() != null || entity.getMaterialesAdquiridos() != null
 				? entity.getMaterialesOfertados().size() + entity.getMaterialesAdquiridos().size()
-			    : 0;
+				: 0;
 		model.setNumMateriales(numMateriales);
-				
-		model.add(linkTo(methodOn(AcuartelamientoController.class).one(((AcuartelamientoConId) entity.getAcuartelamiento()).getId())).withRel("acuartelamiento"));
-		model.add(linkTo(methodOn(DepartamentoController.class).materialesOfertados(((DepartamentoConId) entity).getId())).withRel("materialesOfertados"));
-     	model.add(linkTo(methodOn(DepartamentoController.class).materialesAdquiridos(((DepartamentoConId) entity).getId())).withRel("materialesAdquiridos"));
+
+		model.add(linkTo(methodOn(AcuartelamientoController.class)
+				.one(((AcuartelamientoConId) entity.getAcuartelamiento()).getId())).withRel("acuartelamiento"));
+		model.add(
+				linkTo(methodOn(DepartamentoController.class).materialesOfertados(((DepartamentoConId) entity).getId()))
+						.withRel("materialesOfertados"));
+		model.add(linkTo(
+				methodOn(DepartamentoController.class).materialesAdquiridos(((DepartamentoConId) entity).getId()))
+				.withRel("materialesAdquiridos"));
 
 		return model;
 	}
-	
-	
-	
+
 	public CollectionModel<DepartamentoListaModel> toCollection(List<T> lista) {
-		CollectionModel<DepartamentoListaModel> collection = CollectionModel.of(
-				lista.stream().map(this::toModel).collect(Collectors.toList())
-				);		
+		CollectionModel<DepartamentoListaModel> collection = CollectionModel
+				.of(lista.stream().map(this::toModel).collect(Collectors.toList()));
 		return collection;
 	}
 }

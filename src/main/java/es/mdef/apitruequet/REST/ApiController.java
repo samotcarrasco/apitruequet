@@ -22,53 +22,52 @@ import org.springframework.web.bind.annotation.RestController;
 public class ApiController {
 
 	static final String HOST = "https://truequet-carrascodim.b4a.run/api/";
-	
-    @Autowired
-    private Set<Object> controllers;
 
-    @GetMapping
-    @ResponseBody
-public ResponseEntity<Map<String, String>> getServiceList() {
-    Map<String, String> services = new HashMap<>();
-    for (Object controller : controllers) {          
-        Class<?> controllerClass = controller.getClass();
-        RestController annotation = AnnotationUtils.findAnnotation(controllerClass, RestController.class);
-        if (annotation != null) {
-            String entidad =  controller.getClass().getName().contains("Material") 
-                    ? controller.getClass().getSimpleName().replace("Controller", "") + "es".toLowerCase() 
-                    : controller.getClass().getSimpleName().replace("Controller", "") + "s".toLowerCase();
-            Method[] methods = controllerClass.getMethods();
-            for (Method method : methods) {
-                if (isServiceMethod(method) && method.toString().contains(controller.getClass().getSimpleName())) {
-                    System.out.println("metodo   " + method + " entidad " + entidad);
-                    String methodName = method.getName();
-                    services.put(entidad + " servicio -> " + methodName, HOST + entidad.toLowerCase() + getEndpointUrl(controllerClass, method));
-                }
-            }
-        }
-    }
+	@Autowired
+	private Set<Object> controllers;
 
-    Map<String, String> orderedServices = services.entrySet()
-            .stream()
-            .sorted(Map.Entry.comparingByKey())
-            .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
+	@GetMapping
+	@ResponseBody
+	public ResponseEntity<Map<String, String>> getServiceList() {
+		Map<String, String> services = new HashMap<>();
+		for (Object controller : controllers) {
+			Class<?> controllerClass = controller.getClass();
+			RestController annotation = AnnotationUtils.findAnnotation(controllerClass, RestController.class);
+			if (annotation != null) {
+				String entidad = controller.getClass().getName().contains("Material")
+						? controller.getClass().getSimpleName().replace("Controller", "") + "es".toLowerCase()
+						: controller.getClass().getSimpleName().replace("Controller", "") + "s".toLowerCase();
+				Method[] methods = controllerClass.getMethods();
+				for (Method method : methods) {
+					if (isServiceMethod(method) && method.toString().contains(controller.getClass().getSimpleName())) {
+						System.out.println("metodo   " + method + " entidad " + entidad);
+						String methodName = method.getName();
+						services.put(entidad + " servicio -> " + methodName,
+								HOST + entidad.toLowerCase() + getEndpointUrl(controllerClass, method));
+					}
+				}
+			}
+		}
 
-    return ResponseEntity.ok(orderedServices);
-}
+		Map<String, String> orderedServices = services.entrySet().stream().sorted(Map.Entry.comparingByKey())
+				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
 
-    private boolean isServiceMethod(Method method) {
-        return method.getDeclaringClass() != Object.class && method.isAnnotationPresent(GetMapping.class);
-    }
+		return ResponseEntity.ok(orderedServices);
+	}
 
-    private String getEndpointUrl(Class<?> controllerClass, Method method) {
-        if (method.isAnnotationPresent(GetMapping.class)) {
-            GetMapping annotation = method.getAnnotation(GetMapping.class);
-            String[] paths = annotation.value();
-            if (paths.length > 0) {
-                return paths[0];
-            }
-        }
-        return "";
-	
-    }
+	private boolean isServiceMethod(Method method) {
+		return method.getDeclaringClass() != Object.class && method.isAnnotationPresent(GetMapping.class);
+	}
+
+	private String getEndpointUrl(Class<?> controllerClass, Method method) {
+		if (method.isAnnotationPresent(GetMapping.class)) {
+			GetMapping annotation = method.getAnnotation(GetMapping.class);
+			String[] paths = annotation.value();
+			if (paths.length > 0) {
+				return paths[0];
+			}
+		}
+		return "";
+
+	}
 }

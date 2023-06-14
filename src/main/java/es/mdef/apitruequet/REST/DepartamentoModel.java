@@ -1,24 +1,17 @@
 package es.mdef.apitruequet.REST;
 
-
-
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 
-import es.mde.acing.utils.AcuartelamientoImpl;
 import es.mde.acing.utils.UnidadImpl.TipoEmpleo;
-import es.mdef.apitruequet.entidades.AcuartelamientoConId;
 
+@Relation(itemRelation = "departamento")
+public class DepartamentoModel extends RepresentationModel<DepartamentoModel> {
 
-
-@Relation(itemRelation="departamento")
-public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
-	
 	private Long id;
-	
+
 	private String nombre;
 	private String abreviatura;
-//	private AcuartelamientoConId acuartelamiento;
 	private String acuartelamientoN;
 	private String email;
 	private int credito;
@@ -29,8 +22,7 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 	private String latitud;
 	private String longitud;
 	private int numMateriales;
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -42,10 +34,6 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 	public String getAbreviatura() {
 		return abreviatura;
 	}
-
-//	public AcuartelamientoConId getAcuartelamiento() {
-//		return acuartelamiento;
-//	}
 
 	public int getCredito() {
 		return credito;
@@ -62,11 +50,11 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 	public String getTelefono() {
 		return telefono;
 	}
-	
+
 	public int getNumMateriales() {
 		return numMateriales;
 	}
-	
+
 	public void setNumMateriales(int numMateriales) {
 		this.numMateriales = numMateriales;
 	}
@@ -82,10 +70,6 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 	public void setAbreviatura(String abreviatura) {
 		this.abreviatura = abreviatura;
 	}
-
-//	public void setAcuartelamiento(AcuartelamientoConId acuartelamiento) {
-//		this.acuartelamiento = acuartelamiento;
-//	}
 
 	public void setCredito(int credito) {
 		this.credito = credito;
@@ -103,7 +87,6 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 		this.telefono = telefono;
 	}
 
-	
 	public String getEmail() {
 		return email;
 	}
@@ -148,6 +131,5 @@ public class DepartamentoModel extends RepresentationModel<DepartamentoModel>{
 	public void setAcuartelamientoN(String acuartelamientoN) {
 		this.acuartelamientoN = acuartelamientoN;
 	}
-	
-	
+
 }

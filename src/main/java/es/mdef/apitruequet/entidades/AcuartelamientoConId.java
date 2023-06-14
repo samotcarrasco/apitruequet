@@ -16,6 +16,4 @@ public class AcuartelamientoConId extends AcuartelamientoImpl implements Acuarte
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 }
