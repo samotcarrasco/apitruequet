@@ -1,6 +1,8 @@
 package es.mdef.apitruequet.REST;
 
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.springframework.hateoas.CollectionModel;
@@ -59,6 +61,13 @@ public class MaterialController {
 	public CollectionModel<MaterialListaModel> all() {
 		return listaAssembler.toCollection(repositorio.findAll());
 	}
+	
+//	@GetMapping("algunos")
+//	public CollectionModel<MaterialListaModel> algunos() {
+//	    List<MaterialConId> materiales = repositorio.algunos();
+//	    Collections.shuffle(materiales); 
+//		return listaAssembler.toCollection(materiales);
+//	}
 
 	@PostMapping
 	public MaterialModel add(@Valid @RequestBody MaterialPostModel model) {
