@@ -28,8 +28,10 @@ public class CategoriaListaAssembler<T extends Categoria>
 		if (entity.getCategoriaPadre() != null) {
 			model.setGrupo(entity.getCategoriaPadre().getCategoria());
 		}
-		int numMateriales = entity.getMateriales() != null ? entity.getMateriales().size() : 0;
-		model.setNumMateriales(numMateriales);
+//		int numMateriales = entity.getMateriales() != null ? entity.getMateriales().size() : 0;
+//		model.setNumMateriales(numMateriales);
+		model.setNumMateriales(((CategoriaConId) entity).getNumMateriales());
+
 
 		model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity).getId())).withSelfRel());
 		if (entity.getCategoriaPadre() != null) {

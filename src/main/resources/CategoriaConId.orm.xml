@@ -11,6 +11,9 @@
             <id name="id">
                 <generated-value strategy="IDENTITY"/>
             </id>
+             <basic name="numMateriales" optional="true">
+               <column name="numMateriales"/>
+            </basic>
         </attributes>
     </entity>
 </entity-mappings>

@@ -18,8 +18,10 @@ import es.mde.acing.utils.MaterialImpl.TipoMaterial;
 import es.mdef.apitruequet.entidades.NoInventariable;
 import es.mdef.apitruequet.entidades.Inventariable;
 import es.mdef.apitruequet.ApiTruequetApp;
+import es.mdef.apitruequet.entidades.CategoriaConId;
 import es.mdef.apitruequet.entidades.DepartamentoConId;
 import es.mdef.apitruequet.entidades.MaterialConId;
+import es.mdef.apitruequet.repositorios.CategoriaRepositorio;
 import es.mdef.apitruequet.repositorios.DepartamentoRepositorio;
 import es.mdef.apitruequet.repositorios.MaterialRepositorio;
 import es.mdef.apitruequet.validation.RegisterNotFoundException;
@@ -31,17 +33,20 @@ import jakarta.validation.Valid;
 public class MaterialController {
 	private final MaterialRepositorio repositorio;
 	private final DepartamentoRepositorio repDepartamento;
+	private final CategoriaRepositorio repCategoria;
 	private final MaterialAssembler assembler;
 	private final MaterialListaAssembler listaAssembler;
 
 	private final Logger log;
 
 	MaterialController(MaterialRepositorio repositorio, MaterialAssembler assembler,
-			MaterialListaAssembler listaAssembler, DepartamentoRepositorio repDepartamento) {
+			MaterialListaAssembler listaAssembler, DepartamentoRepositorio repDepartamento, 
+			CategoriaRepositorio repCategoria) {
 		this.repositorio = repositorio;
 		this.assembler = assembler;
 		this.listaAssembler = listaAssembler;
 		this.repDepartamento = repDepartamento;
+		this.repCategoria = repCategoria;
 		log = ApiTruequetApp.log;
 	}
 
@@ -77,6 +82,12 @@ public class MaterialController {
 		repDepartamento.save(departamento);
 		log.info("Credito aumentado en " + bonificacion + " para " + departamento);
 
+		// actualizamos los milis del dpto
+		CategoriaConId cat = repCategoria.findById(model.getCategoria().getId())
+				.orElseThrow(() -> new RegisterNotFoundException(model.getDptoOferta().getId(), "Categoria"));
+		
+		cat.incremaentarMateriales();
+		repCategoria.save(cat);
 		return assembler.toModel(material);
 	}
 
@@ -146,6 +157,11 @@ public class MaterialController {
 				log.info("DISMINUYENDO CREDITO (BONIFICACION EN  ", bonificacion, "MILIS");
 				// si se borra el material, en caso de haber tenido bonificación, se borra
 				departamento.aumentarCredito(-bonificacion);
+				
+				CategoriaConId cat = repCategoria.findById(((CategoriaConId) mat.getCategoria()).getId()).orElseThrow(
+						() -> new RegisterNotFoundException(((CategoriaConId) mat.getCategoria()).getId(),							"Categoria"));
+				cat.decrementarMateriales();
+				repCategoria.save(cat);
 			}
 
 			repositorio.deleteById(id);

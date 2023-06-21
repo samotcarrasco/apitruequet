@@ -24,9 +24,9 @@ public class CategoriaAssembler implements RepresentationModelAssembler<Categori
 		model.setMaxMilis(maxMilis);
 
 		// devolvemos el numero de materiales que tiene la categoria
-		int numMateriales = entity.getMateriales() != null ? entity.getMateriales().size() : 0;
+		//int numMateriales = entity.getMateriales() != null ? entity.getMateriales().size() : 0;
 
-		model.setNumMateriales(numMateriales);
+		model.setNumMateriales(entity.getNumMateriales());
 
 		model.add(linkTo(methodOn(CategoriaController.class).one(((CategoriaConId) entity).getId())).withSelfRel(),
 				linkTo(methodOn(CategoriaController.class).materialesDeCategoria(entity.getId()))
@@ -47,6 +47,7 @@ public class CategoriaAssembler implements RepresentationModelAssembler<Categori
 		categoria.setCategoriaPadre(model.getCategoriaPadre());
 		categoria.setMinMilis(model.getMinMilis());
 		categoria.setMaxMilis(model.getMaxMilis());
+		categoria.setNumMateriales(0);
 		return categoria;
 	}
 }
