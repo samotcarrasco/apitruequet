@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import es.mde.acing.utils.Acuartelamiento;
 import es.mde.acing.utils.Departamento;
 import es.mdef.apitruequet.entidades.AcuartelamientoConId;
+import es.mdef.apitruequet.entidades.DepartamentoConId;
 
 @Component
 public class AcuartelamientoListaAssembler<T extends Acuartelamiento>
@@ -30,8 +31,7 @@ public class AcuartelamientoListaAssembler<T extends Acuartelamiento>
 		int numMateriales = 0;
 		if (entity.getDepartamentos() != null) {
 			for (Departamento departamento : entity.getDepartamentos()) {
-				numMateriales += departamento.getMaterialesOfertados().size()
-						+ departamento.getMaterialesAdquiridos().size();
+				numMateriales += ((DepartamentoConId) departamento).getNumMateriales();
 			}
 		}
 

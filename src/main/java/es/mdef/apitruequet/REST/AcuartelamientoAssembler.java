@@ -36,8 +36,7 @@ public class AcuartelamientoAssembler
 		int numMateriales = 0;
 		if (entity.getDepartamentos() != null) {
 			for (Departamento departamento : entity.getDepartamentos()) {
-				numMateriales += departamento.getMaterialesOfertados().size()
-						+ departamento.getMaterialesAdquiridos().size();
+				numMateriales += ((DepartamentoConId) departamento).getNumMateriales();
 			}
 		}
 		int numDptos = entity.getDepartamentos() != null ? entity.getDepartamentos().size() : 0;
