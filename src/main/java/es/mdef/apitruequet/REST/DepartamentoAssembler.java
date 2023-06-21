@@ -26,8 +26,8 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		model.setLongitud(entity.getLongitud());
 		model.setLatitud(entity.getLatitud());
 		model.setDireccion(entity.getDireccion());
-		int numMateriales = entity.getMaterialesOfertados() != null || entity.getMaterialesAdquiridos() != null
-				? entity.getMaterialesOfertados().size() + entity.getMaterialesAdquiridos().size()
+		int numMateriales = entity.getMaterialesOfertados() != null 
+				? entity.getMaterialesOfertados().size() 
 				: 0;
 		model.setNumMateriales(numMateriales);
 

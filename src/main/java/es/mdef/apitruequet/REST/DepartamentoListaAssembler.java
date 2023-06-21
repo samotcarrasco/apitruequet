@@ -34,8 +34,8 @@ public class DepartamentoListaAssembler<T extends DepartamentoImpl>
 		model.setLongitud(((DepartamentoConId) entity).getLongitud());
 		model.setLatitud(((DepartamentoConId) entity).getLatitud());
 
-		int numMateriales = entity.getMaterialesOfertados() != null || entity.getMaterialesAdquiridos() != null
-				? entity.getMaterialesOfertados().size() + entity.getMaterialesAdquiridos().size()
+		int numMateriales = entity.getMaterialesOfertados() != null
+				? entity.getMaterialesOfertados().size()
 				: 0;
 		model.setNumMateriales(numMateriales);
 
