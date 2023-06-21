@@ -159,13 +159,12 @@ public class MaterialController {
 				// si se borra el material, en caso de haber tenido bonificación, se borra
 				departamento.aumentarCredito(-bonificacion);
 				departamento.decrementarMateriales();
-				
-				CategoriaConId cat = repCategoria.findById(((CategoriaConId) mat.getCategoria()).getId()).orElseThrow(
-						() -> new RegisterNotFoundException(((CategoriaConId) mat.getCategoria()).getId(),							"Categoria"));
-				cat.decrementarMateriales();
-				repCategoria.save(cat);
-				
 			}
+			CategoriaConId cat = repCategoria.findById(((CategoriaConId) mat.getCategoria()).getId()).orElseThrow(
+					() -> new RegisterNotFoundException(((CategoriaConId) mat.getCategoria()).getId(),	"Categoria"));
+			
+			cat.decrementarMateriales();
+			repCategoria.save(cat);
 
 			repositorio.deleteById(id);
 			return mat;
