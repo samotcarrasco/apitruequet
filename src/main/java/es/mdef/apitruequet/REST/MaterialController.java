@@ -78,6 +78,7 @@ public class MaterialController {
 		}
 
 		log.info("AUMENTANDO CREDITO (BONIFICACION EN  ", bonificacion, "MILIS");
+		departamento.incremaentarMateriales();
 		departamento.aumentarCredito(bonificacion);
 		repDepartamento.save(departamento);
 		log.info("Credito aumentado en " + bonificacion + " para " + departamento);
@@ -157,11 +158,13 @@ public class MaterialController {
 				log.info("DISMINUYENDO CREDITO (BONIFICACION EN  ", bonificacion, "MILIS");
 				// si se borra el material, en caso de haber tenido bonificación, se borra
 				departamento.aumentarCredito(-bonificacion);
+				departamento.decrementarMateriales();
 				
 				CategoriaConId cat = repCategoria.findById(((CategoriaConId) mat.getCategoria()).getId()).orElseThrow(
 						() -> new RegisterNotFoundException(((CategoriaConId) mat.getCategoria()).getId(),							"Categoria"));
 				cat.decrementarMateriales();
 				repCategoria.save(cat);
+				
 			}
 
 			repositorio.deleteById(id);

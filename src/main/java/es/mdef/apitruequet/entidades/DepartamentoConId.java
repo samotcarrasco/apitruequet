@@ -7,6 +7,25 @@ import es.mde.acing.utils.DepartamentoImpl;
 public class DepartamentoConId extends DepartamentoImpl implements Departamento{
 	
 	private Long id;
+	private int numMateriales;
+	
+	public void incremaentarMateriales() {
+		this.setNumMateriales(this.getNumMateriales() + 1);
+	}
+
+	public void decrementarMateriales() {
+		this.setNumMateriales(this.getNumMateriales() - 1);
+	}
+	
+
+	public int getNumMateriales() {
+		return numMateriales;
+	}
+
+	public void setNumMateriales(int numMateriales) {
+		this.numMateriales = numMateriales;
+	}
+
 	
 	public Long getId() {
 		return id;

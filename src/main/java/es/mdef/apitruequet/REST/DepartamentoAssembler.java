@@ -26,11 +26,13 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		model.setLongitud(entity.getLongitud());
 		model.setLatitud(entity.getLatitud());
 		model.setDireccion(entity.getDireccion());
-		int numMateriales = entity.getMaterialesOfertados() != null 
-				? entity.getMaterialesOfertados().size() 
-				: 0;
-		model.setNumMateriales(numMateriales);
+//		int numMateriales = entity.getMaterialesOfertados() != null 
+//				? entity.getMaterialesOfertados().size() 
+//				: 0;
+//		model.setNumMateriales(numMateriales);
 
+		model.setNumMateriales(entity.getNumMateriales());
+		
 		model.add(linkTo(methodOn(DepartamentoController.class).one(entity.getId())).withSelfRel());
 		model.add(linkTo(methodOn(AcuartelamientoController.class)
 				.one(((AcuartelamientoConId) entity.getAcuartelamiento()).getId())).withRel("acuartelamiento"));
@@ -55,6 +57,7 @@ public class DepartamentoAssembler implements RepresentationModelAssembler<Depar
 		departamento.setDireccion(model.getDireccion());
 		departamento.setLongitud(model.getLongitud());
 		departamento.setLatitud(model.getLatitud());
+		departamento.setNumMateriales(0);
 
 		return departamento;
 	}

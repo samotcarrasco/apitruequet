@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import es.mde.acing.utils.DepartamentoImpl;
 import es.mdef.apitruequet.entidades.AcuartelamientoConId;
+import es.mdef.apitruequet.entidades.CategoriaConId;
 import es.mdef.apitruequet.entidades.DepartamentoConId;
 
 @Component
@@ -34,10 +35,14 @@ public class DepartamentoListaAssembler<T extends DepartamentoImpl>
 		model.setLongitud(((DepartamentoConId) entity).getLongitud());
 		model.setLatitud(((DepartamentoConId) entity).getLatitud());
 
-		int numMateriales = entity.getMaterialesOfertados() != null
-				? entity.getMaterialesOfertados().size()
-				: 0;
-		model.setNumMateriales(numMateriales);
+//		int numMateriales = entity.getMaterialesOfertados() != null
+//				? entity.getMaterialesOfertados().size()
+//				: 0;
+		//model.setNumMateriales(numMateriales);
+		model.setNumMateriales(((DepartamentoConId) entity).getNumMateriales());
+
+		
+		
 
 		model.add(linkTo(methodOn(AcuartelamientoController.class)
 				.one(((AcuartelamientoConId) entity.getAcuartelamiento()).getId())).withRel("acuartelamiento"));
